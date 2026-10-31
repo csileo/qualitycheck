@@ -131,5 +131,5 @@
 - [X] Every scenario verified (manual ones ticked here)
 - [X] Documentation up to date
 - [X] `/code-review` done
-- [ ] No unrecorded technical debt
+- [X] No unrecorded technical debt (issue #1)
 - [X] Commits reference the story (`Refs: US-XX`)
