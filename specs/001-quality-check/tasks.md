@@ -10,10 +10,10 @@
 
 ## Phase 2: US-01 - Check the project's quality in one command
 
-- [ ] T004 [US1] Test projects `test-cases/projects/{clean,failing-test,bug,vulnerability,unmaintainable,duplication,complex,low-coverage,smell}/input/`
-- [ ] T005 [US1] Steps of `tests/bdd/features/quality-check.feature` in `tests/bdd/test_quality_check.py`; red
-- [ ] T006 [P] [US1] Unit tests and core: `gates.py`, `history.py`, `report.py` (`tests/unit/`)
-- [ ] T007 [US1] Shell: `settings.py`, `tools.py`, wiring in `cli.py`; report snapshots in `output/`; green
+- [X] T004 [US1] Test projects `test-cases/projects/{clean,failing-test,bug,vulnerability,unmaintainable,duplication,complex,low-coverage,smell}/input/`
+- [X] T005 [US1] Steps of `tests/bdd/features/quality-check.feature` in `tests/bdd/test_quality_check.py`; red
+- [X] T006 [P] [US1] Unit tests and core: `gates.py`, `history.py`, `report.py` (`tests/unit/`)
+- [X] T007 [US1] Shell: `settings.py`, `tools.py`, wiring in `cli.py`; report snapshots in `output/`; green
 
 ## Phase 3: US-02 - Publish each check without growing the repository
 

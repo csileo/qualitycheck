@@ -1,0 +1,3 @@
+docs/qualitycheck-report/
+__pycache__/
+.coverage

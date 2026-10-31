@@ -1,0 +1,82 @@
+# Quality check report
+
+- Tested commit: `<commit>`
+- Date: <date>
+- Result: **FAIL**
+- Last passing commit: none yet
+
+## Gates
+
+| Gate | Result | Detail |
+|---|---|---|
+| tests | FAIL | 1 failed |
+| bugs | PASS | 0 bug(s) |
+| vulnerabilities | PASS | 0 medium or high |
+| maintainability | PASS | 0 file(s) below A |
+| duplication | PASS | 0 duplicated block(s) |
+| complexity | PASS | 0 function(s) too complex |
+| coverage | PASS | 100.0% (fail_under 80%) |
+
+## Metrics
+
+| Metric | Value |
+|---|---|
+| Lines of code | 2 |
+| Smells | 0 |
+| Low-severity vulnerabilities | 0 |
+| Coverage | 100.0% |
+
+## Bugs
+
+- none
+
+## Vulnerabilities (medium and high)
+
+- none
+
+## Complexity
+
+- none
+
+## Maintainability below A
+
+- none
+
+## Duplication
+
+- none
+
+## Smells (first 30)
+
+- none
+
+## Low-severity vulnerabilities
+
+- none
+
+## Tests output
+
+```
+F                                                                        [100%]
+================================== FAILURES ===================================
+__________________________________ test_add ___________________________________
+
+    def test_add():
+>       assert add(2, 3) == 6
+E       assert 5 == 6
+E        +  where 5 = add(2, 3)
+
+tests/test_core.py:5: AssertionError
+
+=========================== short test summary info ===========================
+FAILED tests/test_core.py::test_add - assert 5 == 6
+1 failed
+```
+
+## Trend
+
+| date | commit | result | bugs | vulnerabilities | smells | coverage |
+|---|---|---|---|---|---|---|
+| <date> | <commit> | FAIL | 0 | 0 | 0 | 100.0 |
+
+Regenerate: `uv run qualitycheck`.

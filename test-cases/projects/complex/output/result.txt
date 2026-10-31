@@ -1,0 +1,63 @@
+# Quality check report
+
+- Tested commit: `<commit>`
+- Date: <date>
+- Result: **FAIL**
+- Last passing commit: none yet
+
+## Gates
+
+| Gate | Result | Detail |
+|---|---|---|
+| tests | PASS | 2 passed |
+| bugs | PASS | 0 bug(s) |
+| vulnerabilities | PASS | 0 medium or high |
+| maintainability | PASS | 0 file(s) below A |
+| duplication | PASS | 0 duplicated block(s) |
+| complexity | FAIL | 1 function(s) too complex |
+| coverage | n/a | 25.0% (no fail_under) |
+
+## Metrics
+
+| Metric | Value |
+|---|---|
+| Lines of code | 26 |
+| Smells | 0 |
+| Low-severity vulnerabilities | 0 |
+| Coverage | 25.0% |
+
+## Bugs
+
+- none
+
+## Vulnerabilities (medium and high)
+
+- none
+
+## Complexity
+
+- `src/demo/core.py:9` C901 `grade` is too complex (12 > 10)
+
+## Maintainability below A
+
+- none
+
+## Duplication
+
+- none
+
+## Smells (first 30)
+
+- none
+
+## Low-severity vulnerabilities
+
+- none
+
+## Trend
+
+| date | commit | result | bugs | vulnerabilities | smells | coverage |
+|---|---|---|---|---|---|---|
+| <date> | <commit> | FAIL | 0 | 0 | 0 | 25.0 |
+
+Regenerate: `uv run qualitycheck`.

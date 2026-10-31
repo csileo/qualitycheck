@@ -111,10 +111,10 @@ def committed_copy(case: str, destination: Path) -> Path:
 
 
 def normalized(report: str, project: Path) -> str:
-    """Replace the commit and the dates of a report with fixed placeholders."""
+    """Replace the commit, the dates and Windows separators with fixed forms."""
     sha = git(project, "rev-parse", "HEAD")
     report = report.replace(sha, "<commit>").replace(sha[:10], "<commit>")
-    return DATE.sub("<date>", report)
+    return DATE.sub("<date>", report).replace("\\", "/")
 
 
 @pytest.fixture(scope="session")
