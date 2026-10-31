@@ -26,7 +26,7 @@
 - The ratings follow Sonar (ADR 0004) and never change the result:
   - Reliability: A without bug; C when the worst bug is of ruff's `B` family; D when it is of the `F` or `PLE` family.
   - Security: A without medium or high vulnerability; C when the worst is medium; D when it is high; E when it is high with high confidence.
-  - Maintainability: technical debt ratio = smells × 5 min / (lines of code × 30 min); A up to 5 %, B up to 10 %, C up to 20 %, D up to 50 %, E above; n/a without lines of code.
+  - Maintainability: technical debt ratio = smells of `src/` × 5 min / (lines of code of `src/` × 30 min); A up to 5 %, B up to 10 %, C up to 20 %, D up to 50 %, E above; n/a without lines of code.
   - Duplications: lines in duplicated blocks / lines of code, as a percentage, at most 100 %.
 - The images are written to `docs/qualitycheck-report/images/` and published with the report on the `qualitycheck-report` branch; `report.md` links them by relative path.
 - Each image is an SVG written by qualitycheck: no script, no external font or link; it draws its own white card, so it reads the same in GitHub's light and dark themes; it carries an alternative text with the same information.
@@ -44,6 +44,8 @@
 - Coverage of 0 % or 100 %: the ring is all red or all green.
 - No `src/`: maintainability and duplications are n/a.
 - A tool missing (ruff, bandit, pylint, pytest): its tiles are n/a, the Quality Gate names the missing tool as a failed condition.
+- radon missing: the lines of code are n/a, and so are maintainability and duplications, which need them; their tiles name radon.
+- A history cell left empty, or a date that cannot be read: the line breaks at that run; the date is shown as written.
 - Links not checked (offline): the Quality Gate shows the links condition as n/a, as the gates table does.
 
 ## Requirements *(mandatory)*

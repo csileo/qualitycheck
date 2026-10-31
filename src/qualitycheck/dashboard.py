@@ -22,8 +22,16 @@ MONTHS = [
     "Dec",
 ]
 THOUSAND = 1000
-# The tiles of the second row; the rated tiles make the first.
-MEASURES = {"coverage", "duplications", "security-hotspots"}
+# Each tile's title, row and section, in one place: a tile and its n/a
+# variant must land in the same row, or the row breaks in two.
+TILES = {
+    "reliability": ("Reliability", 1, "Bugs"),
+    "security": ("Security", 1, "Vulnerabilities (medium and high)"),
+    "maintainability": ("Maintainability", 1, f"Smells (first {SMELLS_SHOWN})"),
+    "coverage": ("Coverage", 2, "Gates"),
+    "duplications": ("Duplications", 2, "Duplication"),
+    "security-hotspots": ("Security Hotspots", 2, "Low-severity vulnerabilities"),
+}
 
 
 @dataclass(frozen=True)
@@ -46,90 +54,93 @@ def _plural(count: int, noun: str, many: str = "") -> str:
     return f"{count} {noun if count == 1 else many or noun + 's'}"
 
 
-def _size(sloc: int) -> str:
-    return str(sloc) if sloc < THOUSAND else f"{sloc / THOUSAND:.1f}k"
+def _size(m: g.Measures) -> str:
+    if m.maintainability is None:
+        return "n/a"
+    return str(m.sloc) if m.sloc < THOUSAND else f"{m.sloc / THOUSAND:.1f}k"
 
 
-def _failed(label: str, failed: bool) -> str:
-    return f"{label}, Failed" if failed else label
+def _tile(name: str, content: svg.Tile, label: str) -> Image:
+    _, row, heading = TILES[name]
+    if content.failed:
+        label = f"{label}, Failed"
+    return Image(name, label, svg.tile(content, label), row, anchor(heading))
 
 
-def _missing(name: str, title: str, tool: str, link: str) -> Image:
+def _missing(name: str, tool: str) -> Image:
+    title = TILES[name][0]
     content = svg.Tile(title, "n/a", f"{tool} is missing", svg.rating(None))
-    label = f"{title}: n/a, {tool} is missing"
-    return Image(name, label, svg.tile(content, label), 1 + (name in MEASURES), link)
+    return _tile(name, content, f"{title}: n/a, {tool} is missing")
 
 
-def _gate(run: Run, judged: list[g.Gate], sloc: int) -> Image:
+def _gate(run: Run, judged: list[g.Gate], m: g.Measures) -> Image:
     conditions = [
         f"{gate.name}: {gate.detail}" for gate in judged if gate.status == "FAIL"
     ]
     passed = run.result == "PASS"
+    summary = (
+        "All conditions passed."
+        if passed
+        else f"{_plural(len(conditions), 'condition')} failed"
+    )
     label = (
         "Quality Gate: Passed"
         if passed
-        else f"Quality Gate: Failed, {_plural(len(conditions), 'condition')} "
-        f"failed: {'; '.join(conditions)}"
+        else f"Quality Gate: Failed, {summary}: {'; '.join(conditions)}"
     )
-    return Image(
-        "quality-gate", label, svg.gate(passed, conditions, _size(sloc), label), 0
-    )
+    banner = svg.Banner(passed, summary, conditions, _size(m))
+    return Image("quality-gate", label, svg.gate(banner, label), 0)
 
 
 def _reliability(m: g.Measures, failed: set[str]) -> Image:
-    link = anchor("Bugs")
     if m.lint is None:
-        return _missing("reliability", "Reliability", "ruff", link)
+        return _missing("reliability", "ruff")
     count, grade = len(g.bugs(m.lint)), ratings.reliability(m.lint)
     noun = _plural(count, "bug")
+    figure = svg.rating(grade)
     content = svg.Tile(
-        "Reliability",
-        str(count),
-        noun.split(" ", 1)[1],
-        svg.rating(grade),
-        "bugs" in failed,
+        "Reliability", str(count), noun.split(" ", 1)[1], figure, "bugs" in failed
     )
-    label = _failed(f"Reliability: rating {grade}, {noun}", "bugs" in failed)
-    return Image("reliability", label, svg.tile(content, label), 1, link)
+    return _tile("reliability", content, f"Reliability: rating {grade}, {noun}")
 
 
 def _security(m: g.Measures, failed: set[str]) -> Image:
-    link = anchor("Vulnerabilities (medium and high)")
     if m.vulnerabilities is None:
-        return _missing("security", "Security", "bandit", link)
+        return _missing("security", "bandit")
     count = len(g.severe(m.vulnerabilities))
     grade = ratings.security(m.vulnerabilities)
     noun = _plural(count, "vulnerability", "vulnerabilities")
-    hit = "vulnerabilities" in failed
     content = svg.Tile(
-        "Security", str(count), noun.split(" ", 1)[1], svg.rating(grade), hit
+        "Security",
+        str(count),
+        noun.split(" ", 1)[1],
+        svg.rating(grade),
+        "vulnerabilities" in failed,
     )
-    label = _failed(f"Security: rating {grade}, {noun}", hit)
-    return Image("security", label, svg.tile(content, label), 1, link)
+    return _tile("security", content, f"Security: rating {grade}, {noun}")
 
 
 def _maintainability(m: g.Measures, failed: set[str]) -> Image:
-    link = anchor(f"Smells (first {SMELLS_SHOWN})")
     if m.lint is None:
-        return _missing("maintainability", "Maintainability", "ruff", link)
-    smells = len(g.smells(m.lint))
+        return _missing("maintainability", "ruff")
+    if m.maintainability is None:
+        return _missing("maintainability", "radon")
+    smells = g.smells(m.lint)
     ratio = ratings.debt_ratio(smells, m.sloc)
     grade = ratings.maintainability(ratio)
     debt = "n/a" if ratio is None else f"{ratio:.1f}%"
-    hit = bool({"maintainability", "complexity"} & failed)
     content = svg.Tile(
         "Maintainability",
-        str(smells),
+        str(len(smells)),
         f"code smells · {debt} debt",
         svg.rating(grade),
-        hit,
+        bool({"maintainability", "complexity"} & failed),
     )
-    label = _failed(
-        f"Maintainability: rating {grade or 'n/a'}, {smells} code smells, "
-        f"debt ratio {debt}",
-        hit,
+    label = (
+        f"Maintainability: rating {grade or 'n/a'}, {len(smells)} code smells, "
+        f"debt ratio {debt}"
     )
-    return Image("maintainability", label, svg.tile(content, label), 1, link)
+    return _tile("maintainability", content, label)
 
 
 def _coverage(m: g.Measures, failed: set[str], fail_under: float | None) -> Image:
@@ -140,44 +151,40 @@ def _coverage(m: g.Measures, failed: set[str], fail_under: float | None) -> Imag
         detail = (
             "no fail_under" if fail_under is None else f"fail_under {fail_under:g}%"
         )
-    hit = "coverage" in failed
     figure = svg.ring(m.coverage, (svg.GREEN, svg.RED))
-    content = svg.Tile("Coverage", value, detail, figure, hit)
-    label = _failed(f"Coverage: {value}, {detail}", hit)
-    return Image("coverage", label, svg.tile(content, label), 2, anchor("Gates"))
+    content = svg.Tile("Coverage", value, detail, figure, "coverage" in failed)
+    return _tile("coverage", content, f"Coverage: {value}, {detail}")
 
 
 def _duplications(m: g.Measures, failed: set[str]) -> Image:
-    link = anchor("Duplication")
     if m.duplicates is None:
-        return _missing("duplications", "Duplications", "pylint", link)
+        return _missing("duplications", "pylint")
+    if m.maintainability is None:
+        return _missing("duplications", "radon")
     percent = ratings.duplications(m.duplicates, m.sloc)
     value = "n/a" if percent is None else f"{percent:.1f}%"
     detail = "no lines of code" if percent is None else f"on {m.sloc} lines"
-    hit = "duplication" in failed
     figure = svg.ring(percent, (svg.RATING["C"], svg.GRID))
-    content = svg.Tile("Duplications", value, detail, figure, hit)
-    label = _failed(f"Duplications: {value}, {detail}", hit)
-    return Image("duplications", label, svg.tile(content, label), 2, link)
+    content = svg.Tile("Duplications", value, detail, figure, "duplication" in failed)
+    return _tile("duplications", content, f"Duplications: {value}, {detail}")
 
 
 def _hotspots(m: g.Measures) -> Image:
-    link = anchor("Low-severity vulnerabilities")
     if m.vulnerabilities is None:
-        return _missing("security-hotspots", "Security Hotspots", "bandit", link)
-    count = len(ratings.hotspots(m.vulnerabilities))
+        return _missing("security-hotspots", "bandit")
+    count = len(g.low(m.vulnerabilities))
     content = svg.Tile(
         "Security Hotspots", str(count), "low severity, to review", svg.warning(count)
     )
-    label = f"Security Hotspots: {count} to review"
-    return Image("security-hotspots", label, svg.tile(content, label), 2, link)
+    return _tile("security-hotspots", content, f"Security Hotspots: {count} to review")
 
 
 def _day(date: str) -> str:
     try:
-        return f"{MONTHS[int(date[5:7]) - 1]} {int(date[8:10])}"
-    except (ValueError, IndexError):
+        month, day = int(date[5:7]), int(date[8:10])
+    except ValueError:
         return date[:10]
+    return f"{MONTHS[month - 1]} {day}" if 1 <= month <= len(MONTHS) else date[:10]
 
 
 def _number(cell: str | None) -> float | None:
@@ -229,7 +236,7 @@ def images(
     """The dashboard of a run; rows is the history, the run included."""
     failed = {gate.name for gate in judged if gate.status == "FAIL"}
     return [
-        _gate(run, judged, m.sloc),
+        _gate(run, judged, m),
         _reliability(m, failed),
         _security(m, failed),
         _maintainability(m, failed),
@@ -241,7 +248,10 @@ def images(
 
 
 def _markdown(image: Image) -> str:
-    alt = image.alt.replace("[", "\\[").replace("]", "\\]")
+    # A new line would end the image; a bracket or a backslash would cut it.
+    alt = " ".join(image.alt.split())
+    for special in "\\[]":
+        alt = alt.replace(special, "\\" + special)
     shown = f"![{alt}](images/{image.name}.svg)"
     return f"[{shown}]({image.link})" if image.link else shown
 

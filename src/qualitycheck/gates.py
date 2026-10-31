@@ -28,7 +28,8 @@ class Vulnerability:
     code: str
     message: str
     severity: str
-    confidence: str = "HIGH"
+    # Bandit always gives one; unknown, a high severity is not rated E.
+    confidence: str = "UNDEFINED"
 
 
 @dataclass(frozen=True)
@@ -87,6 +88,11 @@ def complex_functions(lint: list[Finding] | None) -> list[Finding]:
 def severe(vulnerabilities: list[Vulnerability] | None) -> list[Vulnerability]:
     """Return the vulnerabilities of medium or high severity."""
     return [v for v in vulnerabilities or [] if v.severity in SEVERE]
+
+
+def low(vulnerabilities: list[Vulnerability] | None) -> list[Vulnerability]:
+    """Return the vulnerabilities of low severity."""
+    return [v for v in vulnerabilities or [] if v.severity not in SEVERE]
 
 
 def unmaintainable(maintainability: dict[str, str] | None) -> list[str]:

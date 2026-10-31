@@ -60,7 +60,7 @@ def _gates(gates: list[g.Gate]) -> list[str]:
 
 
 def _metrics(m: g.Measures) -> list[str]:
-    low = [v for v in m.vulnerabilities or [] if v.severity not in g.SEVERE]
+    low = g.low(m.vulnerabilities)
     coverage = "n/a" if m.coverage is None else f"{m.coverage:.1f}%"
     return [
         "",
@@ -90,7 +90,7 @@ def _frequent_first(findings: list[g.Finding]) -> list[g.Finding]:
 
 
 def _findings(m: g.Measures) -> list[str]:
-    low = [v for v in m.vulnerabilities or [] if v.severity not in g.SEVERE]
+    low = g.low(m.vulnerabilities)
     smells = _frequent_first(g.smells(m.lint))
     return [
         *_section("Bugs", g.bugs(m.lint), _finding),

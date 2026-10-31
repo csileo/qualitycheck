@@ -21,7 +21,7 @@ Chosen option: "Sonar's ratings", for display only, with radon's gate kept, beca
 
 * Reliability: A without bug; C when the worst bug is of ruff's `B` family; D when it is of the `F` or `PLE` family. ruff gives no severity: the family stands for it, and B and E stay unused.
 * Security: A without medium or high vulnerability; C when the worst is medium; D when it is high; E when it is high with high confidence. Low-severity findings are shown as Security Hotspots, without rating, and B stays unused.
-* Maintainability: technical debt ratio = smells × 5 min / (lines of code × 30 min); A up to 5 %, B up to 10 %, C up to 20 %, D up to 50 %, E above.
+* Maintainability: technical debt ratio = smells of `src/` × 5 min / (lines of code of `src/` × 30 min), as radon counts lines in `src/` only; A up to 5 %, B up to 10 %, C up to 20 %, D up to 50 %, E above.
 * Duplications: duplicated lines / lines of code, as a percentage, without rating; coverage as a percentage, without rating.
 * The Quality Gate keeps qualitycheck's gates as its conditions; the ratings never change PASS or FAIL.
 

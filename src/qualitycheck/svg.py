@@ -146,8 +146,19 @@ def tile(content: Tile, label: str) -> str:
     return document((TILE_WIDTH, TILE_HEIGHT), label, body)
 
 
-def gate(passed: bool, conditions: list[str], size: str, label: str) -> str:
-    """The Quality Gate banner: Passed or Failed, the failed conditions, the size."""
+@dataclass(frozen=True)
+class Banner:
+    """The Quality Gate: passed or not, its summary, the failed conditions, the size."""
+
+    passed: bool
+    summary: str
+    conditions: list[str]
+    size: str
+
+
+def gate(banner: Banner, label: str) -> str:
+    """The Quality Gate banner."""
+    passed, conditions = banner.passed, banner.conditions
     # The conditions start at y=78, one per line, above an 18-pixel margin.
     height = 96 + max(0, len(conditions) - 1) * LINE_HEIGHT
     color, word = (GREEN, "Passed") if passed else (RED, "Failed")
@@ -158,12 +169,6 @@ def gate(passed: bool, conditions: list[str], size: str, label: str) -> str:
         else '<path d="M40 56 L52 68 M52 56 L40 68" stroke="#ffffff" '
         'stroke-width="3.5" stroke-linecap="round"/>'
     )
-    count = len(conditions)
-    summary = (
-        "All conditions passed."
-        if passed
-        else f"{count} condition{'' if count == 1 else 's'} failed"
-    )
     body = [
         card(WIDE, height),
         f'<rect x="0" y="0" width="8" height="{height}" rx="4" fill="{color}"/>',
@@ -171,14 +176,14 @@ def gate(passed: bool, conditions: list[str], size: str, label: str) -> str:
         f'<circle cx="46" cy="62" r="16" fill="{color}"/>',
         mark,
         text((72, 72), word, 30, f'fill="{color}" font-weight="bold"'),
-        text((210, 58), summary, 14, 'font-weight="600"'),
+        text((210, 58), banner.summary, 14, 'font-weight="600"'),
         *[
             text((210, 78 + i * LINE_HEIGHT), condition, 12, f'fill="{MUTED}"')
             for i, condition in enumerate(conditions)
         ],
         text(
             (WIDE - 20, 40),
-            size,
+            banner.size,
             22,
             f'fill="{LINK}" font-weight="600" text-anchor="end"',
         ),
@@ -244,23 +249,31 @@ def _axes(chart: Chart) -> list[str]:
     return parts
 
 
+def _segments(chart: Chart, values: list[float | None]) -> list[list[tuple]]:
+    """The points of the runs, split where a value is unknown: no line crosses it."""
+    segments: list[list[tuple]] = [[]]
+    for index, value in enumerate(values):
+        if value is None:
+            segments.append([])
+        else:
+            segments[-1].append((chart.x(index), chart.y(value)))
+    return [segment for segment in segments if segment]
+
+
 def _line(chart: Chart, series: Series) -> list[str]:
-    points = [
-        (chart.x(index), chart.y(value))
-        for index, value in enumerate(series.values)
-        if value is not None
-    ]
-    if not points:
-        return []
-    joined = " ".join(f"{x:.1f},{y:.1f}" for x, y in points)
-    return [
-        f'<polyline points="{joined}" fill="none" stroke="{series.color}" '
-        'stroke-width="2"/>',
-        *(
+    parts = []
+    for segment in _segments(chart, series.values):
+        joined = " ".join(f"{x:.1f},{y:.1f}" for x, y in segment)
+        if len(segment) > 1:
+            parts.append(
+                f'<polyline points="{joined}" fill="none" stroke="{series.color}" '
+                'stroke-width="2"/>'
+            )
+        parts += [
             f'<circle cx="{x:.1f}" cy="{y:.1f}" r="2.5" fill="{series.color}"/>'
-            for x, y in points
-        ),
-    ]
+            for x, y in segment
+        ]
+    return parts
 
 
 def _legend(at: tuple[int, int], series: list[Series]) -> list[str]:

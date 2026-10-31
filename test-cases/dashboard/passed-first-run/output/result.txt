@@ -107,11 +107,8 @@
 <line x1="50" y1="74.0" x2="370" y2="74.0" stroke="#eeeeee"/>
 <text x="44" y="78" font-size="10" fill="#6a737d" text-anchor="end">4</text>
 <text x="210" y="220" font-size="10" fill="#6a737d" text-anchor="middle">Oct 31</text>
-<polyline points="210.0,204.0" fill="none" stroke="#236a97" stroke-width="2"/>
 <circle cx="210.0" cy="204.0" r="2.5" fill="#236a97"/>
-<polyline points="210.0,204.0" fill="none" stroke="#24c6e0" stroke-width="2"/>
 <circle cx="210.0" cy="204.0" r="2.5" fill="#24c6e0"/>
-<polyline points="210.0,204.0" fill="none" stroke="#d02f3a" stroke-width="2"/>
 <circle cx="210.0" cy="204.0" r="2.5" fill="#d02f3a"/>
 <text x="420" y="58" font-size="12" fill="#6a737d" font-weight="600">Coverage</text>
 <line x1="450" y1="204.0" x2="760" y2="204.0" stroke="#eeeeee"/>
@@ -125,6 +122,5 @@
 <line x1="450" y1="74.0" x2="760" y2="74.0" stroke="#eeeeee"/>
 <text x="444" y="78" font-size="10" fill="#6a737d" text-anchor="end">100%</text>
 <text x="605" y="220" font-size="10" fill="#6a737d" text-anchor="middle">Oct 31</text>
-<polyline points="605.0,74.0" fill="none" stroke="#00aa00" stroke-width="2"/>
 <circle cx="605.0" cy="74.0" r="2.5" fill="#00aa00"/>
 </svg>

@@ -1,0 +1,23 @@
+{
+  "tests": {
+    "returncode": 1,
+    "summary": "1 failed [x]\nsee C:\tmp\\"
+  },
+  "lint": [
+    [
+      "src/a.py",
+      1,
+      "E501",
+      "long"
+    ],
+    [
+      "tests/test_a.py",
+      1,
+      "E501",
+      "long"
+    ]
+  ],
+  "maintainability": null,
+  "sloc": 0,
+  "fail_under": 80
+}

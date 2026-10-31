@@ -5,6 +5,18 @@
 - Result: **FAIL**
 - Last passing commit: none yet
 
+![Quality Gate: Failed, 1 condition failed: coverage: 75.0% (fail_under 80%)](images/quality-gate.svg)
+
+[![Reliability: rating A, 0 bugs](images/reliability.svg)](#bugs)
+[![Security: rating A, 0 vulnerabilities](images/security.svg)](#vulnerabilities-medium-and-high)
+[![Maintainability: rating A, 0 code smells, debt ratio 0.0%](images/maintainability.svg)](#smells-first-30)
+
+[![Coverage: 75.0%, fail_under 80%, Failed](images/coverage.svg)](#gates)
+[![Duplications: 0.0%, on 4 lines](images/duplications.svg)](#duplication)
+[![Security Hotspots: 0 to review](images/security-hotspots.svg)](#low-severity-vulnerabilities)
+
+![Activity over the last 1 check: at the last one, code smells 0, bugs 0, vulnerabilities 0, coverage 75.0%](images/activity.svg)
+
 ## Gates
 
 | Gate | Result | Detail |

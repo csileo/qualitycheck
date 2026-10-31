@@ -13,12 +13,12 @@ A functional core rates the measures as Sonar does and draws the dashboard as SV
 
 ## Research
 
-- **R1 Bandit confidence**: bandit's JSON gives `issue_confidence`; `Vulnerability` gains a `confidence` field, last and defaulting to `"HIGH"`, so the existing test cases stay valid.
+- **R1 Bandit confidence**: bandit's JSON gives `issue_confidence`; `Vulnerability` gains a `confidence` field, last and defaulting to `"UNDEFINED"` (bandit's own word), so the existing test cases stay valid and an unknown confidence never rates E.
 - **R2 Duplicated lines**: pylint names each copy as `module:[start:end]`, start counted from 0 and end excluded (`demo.first:[5:12]` covers 7 lines). The duplicated lines are the union of these ranges per module, summed; the percentage divides them by radon's lines of code of `src/`, capped at 100 %.
-- **R3 Debt ratio**: smells × 5 / (lines of code × 30), as a percentage; n/a without lines of code. Rating bounds 5, 10, 20, 50, included in the better rating.
+- **R3 Debt ratio**: smells of `src/` × 5 / (lines of code of `src/` × 30), as a percentage; n/a without lines of code. Rating bounds 5, 10, 20, 50, included in the better rating.
 - **R4 Rendering on GitHub**: relative images in Markdown and links on images render in private repositories; GitHub ignores scripts and external references in an image anyway, and none is written. Each SVG has a `<title>` and an `aria-label` equal to the alternative text, which the tests read.
 - **R5 Anchors**: a tile links to its section with GitHub's heading anchors: lowercase, punctuation dropped, spaces turned into hyphens (`Smells (first 30)` → `#smells-first-30`).
-- **R6 Activity**: the last `TREND_ROWS` rows of the history; empty cells are left out of their line; one run is drawn at the middle; the issues scale rounds up to a multiple of 4 (at least 4), the coverage scale is 0-100 %; dates as `Oct 31`, from a fixed English month list.
+- **R6 Activity**: the last `TREND_ROWS` rows of the history; an empty cell breaks its line; one run is drawn at the middle; the issues scale rounds up to a multiple of 4 (at least 4), the coverage scale is 0-100 %; dates as `Oct 31`, from a fixed English month list.
 
 ## Design
 

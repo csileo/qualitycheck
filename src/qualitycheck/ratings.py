@@ -30,17 +30,16 @@ def security(vulnerabilities: list[g.Vulnerability]) -> str:
     return "D" if high else "C"
 
 
-def hotspots(vulnerabilities: list[g.Vulnerability]) -> list[g.Vulnerability]:
-    """The low-severity vulnerabilities, to review."""
-    return [v for v in vulnerabilities if v.severity not in g.SEVERE]
+def debt_ratio(smells: list[g.Finding], sloc: int) -> float | None:
+    """The time to fix the smells over the time to write the code, in percent.
 
-
-def debt_ratio(smells: int, sloc: int) -> float | None:
-    """The time to fix the smells over the time to write the code, in percent."""
+    Only the smells of src/ count: the lines of code are those of src/.
+    """
     if not sloc:
         return None
+    count = sum(1 for smell in smells if smell.path.startswith("src/"))
     # Multiplied first: a ratio on a bound, such as 5 %, stays exact.
-    return smells * SMELL_MINUTES * 100 / (sloc * LINE_MINUTES)
+    return count * SMELL_MINUTES * 100 / (sloc * LINE_MINUTES)
 
 
 def maintainability(ratio: float | None) -> str | None:

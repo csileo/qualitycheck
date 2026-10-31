@@ -26,7 +26,7 @@
 <text x="210" y="132" font-size="12" fill="#6a737d">maintainability: radon is missing from the environment</text>
 <text x="210" y="150" font-size="12" fill="#6a737d">duplication: pylint is missing from the environment</text>
 <text x="210" y="168" font-size="12" fill="#6a737d">complexity: ruff is missing from the environment</text>
-<text x="768" y="40" font-size="22" fill="#236a97" font-weight="600" text-anchor="end">0</text>
+<text x="768" y="40" font-size="22" fill="#236a97" font-weight="600" text-anchor="end">n/a</text>
 <text x="768" y="60" font-size="12" fill="#6a737d" text-anchor="end">lines of code · Python</text>
 </svg>
 
