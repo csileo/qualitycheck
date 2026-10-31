@@ -27,8 +27,8 @@
 
 ## Phase 5: US-04 - Be reminded before pushing unchecked code
 
-- [ ] T012 [US4] Steps of `tests/bdd/features/status.feature` in `tests/bdd/test_status.py`; red
-- [ ] T013 [US4] `status.py`, `--status` in `cli.py`; green
+- [X] T012 [US4] Steps of `tests/bdd/features/status.feature` in `tests/bdd/test_status.py`; red
+- [X] T013 [US4] `status.py`, `--status` in `cli.py`; green
 
 ## Phase 6: Polish
 

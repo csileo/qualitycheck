@@ -17,17 +17,20 @@ GIT_IDENTITY = {
 }
 
 
-def git(cwd: Path, *args: str) -> str:
-    """Run git in cwd with a test identity; return its output."""
+def git(cwd: Path, *args: str, stdin: str = "") -> str:
+    """Run git in cwd with a test identity; return its output.
+
+    stdin goes as bytes: text mode would turn its LF into CRLF on Windows.
+    """
     result = subprocess.run(
         ["git", *args],
         cwd=cwd,
         env={**os.environ, **GIT_IDENTITY},
+        input=stdin.encode("utf-8"),
         capture_output=True,
-        text=True,
         check=True,
     )
-    return result.stdout.strip()
+    return result.stdout.decode("utf-8").strip()
 
 
 def run_check(

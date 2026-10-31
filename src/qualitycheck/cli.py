@@ -7,7 +7,7 @@ import subprocess
 import sys
 from pathlib import Path
 
-from qualitycheck import gates, history, repository, settings, tools
+from qualitycheck import gates, history, repository, settings, status, tools
 from qualitycheck.report import Run, render
 
 REPORT_DIR = Path("docs") / "qualitycheck-report"
@@ -91,11 +91,33 @@ def check(root: Path) -> int:
     return 0 if run.result == "PASS" else 1
 
 
+def remind(root: Path) -> int:
+    """Warn when the last recorded check is missing, failed or stale; never fail."""
+    try:
+        own = settings.load(root)
+    except settings.SettingsError as error:
+        _warn(str(error))
+        return 0
+    rows = history.parse(repository.recorded_history(root))
+    since = repository.commits_since(root, rows[-1]["commit"]) if rows else 0
+    now = dt.datetime.now().astimezone()
+    warning = status.reminder(rows, since, now, (own.max_commits, own.max_days))
+    if warning:
+        _warn(warning)
+    return 0
+
+
 def main(argv: list[str] | None = None) -> int:
     """Run the command and return its exit code."""
     parser = argparse.ArgumentParser(prog="qualitycheck", description=__doc__)
-    parser.parse_args(argv)
-    return check(Path.cwd())
+    parser.add_argument(
+        "--status",
+        action="store_true",
+        help="warn, before a push, when the last check is missing, failed or stale",
+    )
+    arguments = parser.parse_args(argv)
+    root = Path.cwd()
+    return remind(root) if arguments.status else check(root)
 
 
 if __name__ == "__main__":

@@ -46,6 +46,22 @@ def _has_remote(root: Path) -> bool:
     return REMOTE in _git(root, "remote").stdout.split()
 
 
+def recorded_history(root: Path) -> str:
+    """Return the history of the local branch, else of its last fetched copy."""
+    for ref in (f"refs/heads/{BRANCH}", REMOTE_REF):
+        shown = _git(root, "show", f"{ref}:history.csv")
+        if not shown.returncode:
+            return shown.stdout
+    return ""
+
+
+def commits_since(root: Path, commit: str) -> int | None:
+    """Return the commits on HEAD after commit, or None if HEAD does not hold it."""
+    counted = _git(root, "rev-list", "--count", f"{commit}..HEAD")
+    holds = not _git(root, "merge-base", "--is-ancestor", commit, "HEAD").returncode
+    return int(counted.stdout) if holds and not counted.returncode else None
+
+
 def previous_history(root: Path) -> str:
     """Return the history to continue: the remote's when fetched, else the local one."""
     fetched = (
