@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="788" height="228" viewBox="0 0 788 228" role="img" aria-label="Activity over the last 6 checks: code smells 52 to 37, bugs 3 to 0, coverage 71% to 76.4%" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif">
+<title>Activity over the last 6 checks: code smells 52 to 37, bugs 3 to 0, coverage 71% to 76.4%</title>
+<rect x="0.5" y="0.5" width="787" height="227" rx="6" fill="#ffffff" stroke="#e1e4e8"/>
+<text x="20" y="30" font-size="15" fill="#333333" font-weight="600" text-anchor="start">Activity</text>
+<text x="20" y="58" font-size="12" fill="#6a737d" font-weight="600" text-anchor="start">Issues</text>
+<rect x="80" y="49" width="10" height="10" rx="2" fill="#236a97"/>
+<text x="95" y="58" font-size="11" fill="#333333" font-weight="normal" text-anchor="start">Code Smells</text>
+<rect x="187" y="49" width="10" height="10" rx="2" fill="#24c6e0"/>
+<text x="202" y="58" font-size="11" fill="#333333" font-weight="normal" text-anchor="start">Bugs</text>
+<rect x="245" y="49" width="10" height="10" rx="2" fill="#d02f3a"/>
+<text x="260" y="58" font-size="11" fill="#333333" font-weight="normal" text-anchor="start">Vulnerabilities</text>
+<line x1="50" y1="204.0" x2="370" y2="204.0" stroke="#eeeeee"/>
+<text x="44" y="208.0" font-size="10" fill="#6a737d" font-weight="normal" text-anchor="end">0</text>
+<line x1="50" y1="171.5" x2="370" y2="171.5" stroke="#eeeeee"/>
+<text x="44" y="175.5" font-size="10" fill="#6a737d" font-weight="normal" text-anchor="end">15</text>
+<line x1="50" y1="139.0" x2="370" y2="139.0" stroke="#eeeeee"/>
+<text x="44" y="143.0" font-size="10" fill="#6a737d" font-weight="normal" text-anchor="end">30</text>
+<line x1="50" y1="106.5" x2="370" y2="106.5" stroke="#eeeeee"/>
+<text x="44" y="110.5" font-size="10" fill="#6a737d" font-weight="normal" text-anchor="end">45</text>
+<line x1="50" y1="74.0" x2="370" y2="74.0" stroke="#eeeeee"/>
+<text x="44" y="78.0" font-size="10" fill="#6a737d" font-weight="normal" text-anchor="end">60</text>
+<text x="50.0" y="220" font-size="10" fill="#6a737d" font-weight="normal" text-anchor="middle">Oct 24</text>
+<text x="114.0" y="220" font-size="10" fill="#6a737d" font-weight="normal" text-anchor="middle">Oct 25</text>
+<text x="178.0" y="220" font-size="10" fill="#6a737d" font-weight="normal" text-anchor="middle">Oct 27</text>
+<text x="242.0" y="220" font-size="10" fill="#6a737d" font-weight="normal" text-anchor="middle">Oct 28</text>
+<text x="306.0" y="220" font-size="10" fill="#6a737d" font-weight="normal" text-anchor="middle">Oct 29</text>
+<text x="370.0" y="220" font-size="10" fill="#6a737d" font-weight="normal" text-anchor="middle">Oct 31</text>
+<polyline points="50.0,91.3 114.0,97.8 178.0,102.2 242.0,108.7 306.0,117.3 370.0,123.8" fill="none" stroke="#236a97" stroke-width="2"/>
+<circle cx="50.0" cy="91.3" r="2.5" fill="#236a97"/>
+<circle cx="114.0" cy="97.8" r="2.5" fill="#236a97"/>
+<circle cx="178.0" cy="102.2" r="2.5" fill="#236a97"/>
+<circle cx="242.0" cy="108.7" r="2.5" fill="#236a97"/>
+<circle cx="306.0" cy="117.3" r="2.5" fill="#236a97"/>
+<circle cx="370.0" cy="123.8" r="2.5" fill="#236a97"/>
+<polyline points="50.0,197.5 114.0,199.7 178.0,199.7 242.0,201.8 306.0,204.0 370.0,204.0" fill="none" stroke="#24c6e0" stroke-width="2"/>
+<circle cx="50.0" cy="197.5" r="2.5" fill="#24c6e0"/>
+<circle cx="114.0" cy="199.7" r="2.5" fill="#24c6e0"/>
+<circle cx="178.0" cy="199.7" r="2.5" fill="#24c6e0"/>
+<circle cx="242.0" cy="201.8" r="2.5" fill="#24c6e0"/>
+<circle cx="306.0" cy="204.0" r="2.5" fill="#24c6e0"/>
+<circle cx="370.0" cy="204.0" r="2.5" fill="#24c6e0"/>
+<polyline points="50.0,204.0 114.0,204.0 178.0,201.8 242.0,204.0 306.0,204.0 370.0,201.8" fill="none" stroke="#d02f3a" stroke-width="2"/>
+<circle cx="50.0" cy="204.0" r="2.5" fill="#d02f3a"/>
+<circle cx="114.0" cy="204.0" r="2.5" fill="#d02f3a"/>
+<circle cx="178.0" cy="201.8" r="2.5" fill="#d02f3a"/>
+<circle cx="242.0" cy="204.0" r="2.5" fill="#d02f3a"/>
+<circle cx="306.0" cy="204.0" r="2.5" fill="#d02f3a"/>
+<circle cx="370.0" cy="201.8" r="2.5" fill="#d02f3a"/>
+<text x="420" y="58" font-size="12" fill="#6a737d" font-weight="600" text-anchor="start">Coverage</text>
+<line x1="450" y1="204.0" x2="760" y2="204.0" stroke="#eeeeee"/>
+<text x="444" y="208.0" font-size="10" fill="#6a737d" font-weight="normal" text-anchor="end">0%</text>
+<line x1="450" y1="171.5" x2="760" y2="171.5" stroke="#eeeeee"/>
+<text x="444" y="175.5" font-size="10" fill="#6a737d" font-weight="normal" text-anchor="end">25%</text>
+<line x1="450" y1="139.0" x2="760" y2="139.0" stroke="#eeeeee"/>
+<text x="444" y="143.0" font-size="10" fill="#6a737d" font-weight="normal" text-anchor="end">50%</text>
+<line x1="450" y1="106.5" x2="760" y2="106.5" stroke="#eeeeee"/>
+<text x="444" y="110.5" font-size="10" fill="#6a737d" font-weight="normal" text-anchor="end">75%</text>
+<line x1="450" y1="74.0" x2="760" y2="74.0" stroke="#eeeeee"/>
+<text x="444" y="78.0" font-size="10" fill="#6a737d" font-weight="normal" text-anchor="end">100%</text>
+<text x="450.0" y="220" font-size="10" fill="#6a737d" font-weight="normal" text-anchor="middle">Oct 24</text>
+<text x="512.0" y="220" font-size="10" fill="#6a737d" font-weight="normal" text-anchor="middle">Oct 25</text>
+<text x="574.0" y="220" font-size="10" fill="#6a737d" font-weight="normal" text-anchor="middle">Oct 27</text>
+<text x="636.0" y="220" font-size="10" fill="#6a737d" font-weight="normal" text-anchor="middle">Oct 28</text>
+<text x="698.0" y="220" font-size="10" fill="#6a737d" font-weight="normal" text-anchor="middle">Oct 29</text>
+<text x="760.0" y="220" font-size="10" fill="#6a737d" font-weight="normal" text-anchor="middle">Oct 31</text>
+<polyline points="450.0,111.7 512.0,108.5 574.0,102.3 636.0,98.7 698.0,97.0 760.0,104.7" fill="none" stroke="#00aa00" stroke-width="2"/>
+<circle cx="450.0" cy="111.7" r="2.5" fill="#00aa00"/>
+<circle cx="512.0" cy="108.5" r="2.5" fill="#00aa00"/>
+<circle cx="574.0" cy="102.3" r="2.5" fill="#00aa00"/>
+<circle cx="636.0" cy="98.7" r="2.5" fill="#00aa00"/>
+<circle cx="698.0" cy="97.0" r="2.5" fill="#00aa00"/>
+<circle cx="760.0" cy="104.7" r="2.5" fill="#00aa00"/>
+<line x1="450" y1="100" x2="760" y2="100" stroke="#ed7d20" stroke-dasharray="4 3"/>
+<text x="760" y="95" font-size="10" fill="#ed7d20" font-weight="normal" text-anchor="end">fail_under 80%</text>
+</svg>

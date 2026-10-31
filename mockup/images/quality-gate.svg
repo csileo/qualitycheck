@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="788" height="96" viewBox="0 0 788 96" role="img" aria-label="Quality Gate: Failed, 2 conditions failed: vulnerabilities and coverage" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif">
+<title>Quality Gate: Failed, 2 conditions failed: vulnerabilities and coverage</title>
+<rect x="0.5" y="0.5" width="787" height="95" rx="6" fill="#ffffff" stroke="#e1e4e8"/>
+<rect x="0" y="0" width="8" height="96" rx="4" fill="#d02f3a"/>
+<text x="28" y="30" font-size="13" fill="#6a737d" font-weight="600" text-anchor="start">Quality Gate</text>
+<circle cx="46" cy="62" r="16" fill="#d02f3a"/>
+<path d="M39 55 L53 69 M53 55 L39 69" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round"/>
+<text x="72" y="72" font-size="30" fill="#d02f3a" font-weight="bold" text-anchor="start">Failed</text>
+<text x="190" y="58" font-size="14" fill="#333333" font-weight="600" text-anchor="start">2 conditions failed</text>
+<text x="190" y="78" font-size="12" fill="#6a737d" font-weight="normal" text-anchor="start">Vulnerabilities 1 (required 0) · Coverage 76.4% (required ≥ 80%)</text>
+<text x="768" y="58" font-size="22" fill="#236a97" font-weight="600" text-anchor="end">3.1k</text>
+<text x="768" y="78" font-size="12" fill="#6a737d" font-weight="normal" text-anchor="end">lines of code · Python</text>
+</svg>
