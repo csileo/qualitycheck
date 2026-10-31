@@ -35,9 +35,20 @@ def _run(
         errors="replace",
         check=False,
     )
-    if process.returncode and "No module named" in process.stderr:
+    if process.returncode and missing_module(args[0], process.stderr):
         return None
     return process
+
+
+def missing_module(module: str, stderr: str) -> bool:
+    """Tell whether python could not find module itself.
+
+    An import error inside the project, such as in a conftest, names another
+    module in quotes: the tool ran and its failure is a result.
+    """
+    return (
+        re.search(rf": No module named {re.escape(module)}$", stderr, re.M) is not None
+    )
 
 
 def _relative(root: Path, path: str) -> str:
