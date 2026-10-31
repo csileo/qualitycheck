@@ -24,7 +24,7 @@ uv run qualitycheck --status  # before a push: warn when the last check is missi
 
 1. runs the tests with coverage, ruff, bandit, radon, pylint and the link check (lychee) on the whole project;
 2. judges each gate: tests pass, no bug, no medium or high vulnerability, maintainability A in every file, no duplicated block, no function above the complexity limit, coverage at least `fail_under`, no broken link;
-3. writes `report.md`, `history.csv`, `coverage.xml`, `htmlcov/` and `bandit.html` to `docs/qualitycheck-report/`;
+3. writes `report.md`, `images/`, `history.csv`, `coverage.xml`, `htmlcov/` and `bandit.html` to `docs/qualitycheck-report/`. `report.md` opens on a dashboard like Sonar's overview, drawn as SVG images that GitHub renders in public and private repositories alike ([ADR 0003](docs/adr/0003-report-as-markdown-with-svg-images.md)): the Quality Gate, the reliability, security and maintainability ratings, coverage, duplications, security hotspots and the activity of the last checks. The ratings follow Sonar and never change the result ([ADR 0004](docs/adr/0004-sonar-ratings-for-display-only.md));
 4. publishes them on the `qualitycheck-report` branch, replaced at each check: one commit, no past versions, nothing committed on the checked branch ([ADR 0001](docs/adr/0001-publish-on-a-replaced-branch.md)). Offline, it only warns.
 
 Exit codes: 0 PASS, 1 FAIL, 2 the check did not run or was not recorded (invalid settings, uncommitted changes, report folder not ignored, git unable to commit the report). `--status` always exits 0: it never blocks a push.
@@ -43,7 +43,7 @@ max_days = 7      # ... or than this many days
 
 ## Development
 
-[Spec](specs/001-quality-check/spec.md), [architecture](docs/architecture.md). Dev tooling from [commonreqs](https://github.com/csileo/commonreqs).
+Specs: [quality check](specs/001-quality-check/spec.md), [visual report](specs/002-visual-report/spec.md); [architecture](docs/architecture.md). Dev tooling from [commonreqs](https://github.com/csileo/commonreqs).
 
 ## License
 

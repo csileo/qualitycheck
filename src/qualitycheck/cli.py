@@ -7,7 +7,7 @@ import subprocess
 import sys
 from pathlib import Path
 
-from qualitycheck import gates, history, repository, settings, status, tools
+from qualitycheck import dashboard, gates, history, repository, settings, status, tools
 from qualitycheck.report import Run, history_row, render
 
 REPORT_DIR = Path("docs") / "qualitycheck-report"
@@ -51,6 +51,12 @@ def _fresh_output(root: Path) -> Path:
     return out
 
 
+def _write_images(folder: Path, images: list[dashboard.Image]) -> None:
+    folder.mkdir()
+    for image in images:
+        (folder / f"{image.name}.svg").write_bytes(image.svg.encode("utf-8"))
+
+
 def check(root: Path) -> int:
     """Run the check of the project at root, publish it; return the exit code."""
     own = _settings(root)
@@ -63,7 +69,10 @@ def check(root: Path) -> int:
     date = dt.datetime.now().astimezone().isoformat(timespec="minutes")
     run = Run(_head(root), date, gates.result(judged))
     text = history.append(previous, history_row(run, measures, judged))
-    report = render(run, judged, measures, history.parse(text))
+    rows = history.parse(text)
+    images = dashboard.images(run, judged, measures, rows, own.fail_under)
+    _write_images(out / "images", images)
+    report = render(run, judged, measures, rows, dashboard.markdown(images))
     (out / "report.md").write_bytes(report.encode("utf-8"))
     (out / "history.csv").write_bytes(text.encode("utf-8"))
     try:

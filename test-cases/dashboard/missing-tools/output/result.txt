@@ -1,0 +1,130 @@
+![Quality Gate: Failed, 6 conditions failed: tests: pytest is missing from the environment; bugs: ruff is missing from the environment; vulnerabilities: bandit is missing from the environment; maintainability: radon is missing from the environment; duplication: pylint is missing from the environment; complexity: ruff is missing from the environment](images/quality-gate.svg)
+
+[![Reliability: n/a, ruff is missing](images/reliability.svg)](#bugs)
+[![Security: n/a, bandit is missing](images/security.svg)](#vulnerabilities-medium-and-high)
+[![Maintainability: n/a, ruff is missing](images/maintainability.svg)](#smells-first-30)
+
+[![Coverage: n/a, no coverage data](images/coverage.svg)](#gates)
+[![Duplications: n/a, pylint is missing](images/duplications.svg)](#duplication)
+[![Security Hotspots: n/a, bandit is missing](images/security-hotspots.svg)](#low-severity-vulnerabilities)
+
+![Activity over the last 1 check: at the last one, code smells n/a, bugs n/a, vulnerabilities n/a, coverage n/a](images/activity.svg)
+
+=== quality-gate.svg
+<svg xmlns="http://www.w3.org/2000/svg" width="788" height="186" viewBox="0 0 788 186" role="img" aria-label="Quality Gate: Failed, 6 conditions failed: tests: pytest is missing from the environment; bugs: ruff is missing from the environment; vulnerabilities: bandit is missing from the environment; maintainability: radon is missing from the environment; duplication: pylint is missing from the environment; complexity: ruff is missing from the environment" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif">
+<title>Quality Gate: Failed, 6 conditions failed: tests: pytest is missing from the environment; bugs: ruff is missing from the environment; vulnerabilities: bandit is missing from the environment; maintainability: radon is missing from the environment; duplication: pylint is missing from the environment; complexity: ruff is missing from the environment</title>
+<rect x="0.5" y="0.5" width="787" height="185" rx="6" fill="#ffffff" stroke="#e1e4e8"/>
+<rect x="0" y="0" width="8" height="186" rx="4" fill="#d02f3a"/>
+<text x="28" y="30" font-size="13" fill="#6a737d" font-weight="600">Quality Gate</text>
+<circle cx="46" cy="62" r="16" fill="#d02f3a"/>
+<path d="M40 56 L52 68 M52 56 L40 68" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round"/>
+<text x="72" y="72" font-size="30" fill="#d02f3a" font-weight="bold">Failed</text>
+<text x="210" y="58" font-size="14" fill="#333333" font-weight="600">6 conditions failed</text>
+<text x="210" y="78" font-size="12" fill="#6a737d">tests: pytest is missing from the environment</text>
+<text x="210" y="96" font-size="12" fill="#6a737d">bugs: ruff is missing from the environment</text>
+<text x="210" y="114" font-size="12" fill="#6a737d">vulnerabilities: bandit is missing from the environment</text>
+<text x="210" y="132" font-size="12" fill="#6a737d">maintainability: radon is missing from the environment</text>
+<text x="210" y="150" font-size="12" fill="#6a737d">duplication: pylint is missing from the environment</text>
+<text x="210" y="168" font-size="12" fill="#6a737d">complexity: ruff is missing from the environment</text>
+<text x="768" y="40" font-size="22" fill="#236a97" font-weight="600" text-anchor="end">0</text>
+<text x="768" y="60" font-size="12" fill="#6a737d" text-anchor="end">lines of code · Python</text>
+</svg>
+
+=== reliability.svg
+<svg xmlns="http://www.w3.org/2000/svg" width="260" height="128" viewBox="0 0 260 128" role="img" aria-label="Reliability: n/a, ruff is missing" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif">
+<title>Reliability: n/a, ruff is missing</title>
+<rect x="0.5" y="0.5" width="259" height="127" rx="6" fill="#ffffff" stroke="#e1e4e8"/>
+<text x="16" y="28" font-size="14" fill="#333333" font-weight="600">Reliability</text>
+<text x="16" y="78" font-size="30" fill="#236a97" font-weight="600">n/a</text>
+<text x="16" y="104" font-size="12" fill="#6a737d">ruff is missing</text>
+<circle cx="220" cy="82" r="20" fill="none" stroke="#9aa0a6" stroke-width="3"/><text x="220" y="86" font-size="11" fill="#9aa0a6" text-anchor="middle">n/a</text>
+</svg>
+
+=== security.svg
+<svg xmlns="http://www.w3.org/2000/svg" width="260" height="128" viewBox="0 0 260 128" role="img" aria-label="Security: n/a, bandit is missing" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif">
+<title>Security: n/a, bandit is missing</title>
+<rect x="0.5" y="0.5" width="259" height="127" rx="6" fill="#ffffff" stroke="#e1e4e8"/>
+<text x="16" y="28" font-size="14" fill="#333333" font-weight="600">Security</text>
+<text x="16" y="78" font-size="30" fill="#236a97" font-weight="600">n/a</text>
+<text x="16" y="104" font-size="12" fill="#6a737d">bandit is missing</text>
+<circle cx="220" cy="82" r="20" fill="none" stroke="#9aa0a6" stroke-width="3"/><text x="220" y="86" font-size="11" fill="#9aa0a6" text-anchor="middle">n/a</text>
+</svg>
+
+=== maintainability.svg
+<svg xmlns="http://www.w3.org/2000/svg" width="260" height="128" viewBox="0 0 260 128" role="img" aria-label="Maintainability: n/a, ruff is missing" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif">
+<title>Maintainability: n/a, ruff is missing</title>
+<rect x="0.5" y="0.5" width="259" height="127" rx="6" fill="#ffffff" stroke="#e1e4e8"/>
+<text x="16" y="28" font-size="14" fill="#333333" font-weight="600">Maintainability</text>
+<text x="16" y="78" font-size="30" fill="#236a97" font-weight="600">n/a</text>
+<text x="16" y="104" font-size="12" fill="#6a737d">ruff is missing</text>
+<circle cx="220" cy="82" r="20" fill="none" stroke="#9aa0a6" stroke-width="3"/><text x="220" y="86" font-size="11" fill="#9aa0a6" text-anchor="middle">n/a</text>
+</svg>
+
+=== coverage.svg
+<svg xmlns="http://www.w3.org/2000/svg" width="260" height="128" viewBox="0 0 260 128" role="img" aria-label="Coverage: n/a, no coverage data" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif">
+<title>Coverage: n/a, no coverage data</title>
+<rect x="0.5" y="0.5" width="259" height="127" rx="6" fill="#ffffff" stroke="#e1e4e8"/>
+<text x="16" y="28" font-size="14" fill="#333333" font-weight="600">Coverage</text>
+<text x="16" y="78" font-size="30" fill="#236a97" font-weight="600">n/a</text>
+<text x="16" y="104" font-size="12" fill="#6a737d">no coverage data</text>
+<circle cx="220" cy="82" r="20" fill="none" stroke="#9aa0a6" stroke-width="7"/><circle cx="220" cy="82" r="20" fill="none" stroke="#9aa0a6" stroke-width="7" stroke-dasharray="0.0 125.7" transform="rotate(-90 220 82)"/>
+</svg>
+
+=== duplications.svg
+<svg xmlns="http://www.w3.org/2000/svg" width="260" height="128" viewBox="0 0 260 128" role="img" aria-label="Duplications: n/a, pylint is missing" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif">
+<title>Duplications: n/a, pylint is missing</title>
+<rect x="0.5" y="0.5" width="259" height="127" rx="6" fill="#ffffff" stroke="#e1e4e8"/>
+<text x="16" y="28" font-size="14" fill="#333333" font-weight="600">Duplications</text>
+<text x="16" y="78" font-size="30" fill="#236a97" font-weight="600">n/a</text>
+<text x="16" y="104" font-size="12" fill="#6a737d">pylint is missing</text>
+<circle cx="220" cy="82" r="20" fill="none" stroke="#9aa0a6" stroke-width="3"/><text x="220" y="86" font-size="11" fill="#9aa0a6" text-anchor="middle">n/a</text>
+</svg>
+
+=== security-hotspots.svg
+<svg xmlns="http://www.w3.org/2000/svg" width="260" height="128" viewBox="0 0 260 128" role="img" aria-label="Security Hotspots: n/a, bandit is missing" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif">
+<title>Security Hotspots: n/a, bandit is missing</title>
+<rect x="0.5" y="0.5" width="259" height="127" rx="6" fill="#ffffff" stroke="#e1e4e8"/>
+<text x="16" y="28" font-size="14" fill="#333333" font-weight="600">Security Hotspots</text>
+<text x="16" y="78" font-size="30" fill="#236a97" font-weight="600">n/a</text>
+<text x="16" y="104" font-size="12" fill="#6a737d">bandit is missing</text>
+<circle cx="220" cy="82" r="20" fill="none" stroke="#9aa0a6" stroke-width="3"/><text x="220" y="86" font-size="11" fill="#9aa0a6" text-anchor="middle">n/a</text>
+</svg>
+
+=== activity.svg
+<svg xmlns="http://www.w3.org/2000/svg" width="788" height="228" viewBox="0 0 788 228" role="img" aria-label="Activity over the last 1 check: at the last one, code smells n/a, bugs n/a, vulnerabilities n/a, coverage n/a" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif">
+<title>Activity over the last 1 check: at the last one, code smells n/a, bugs n/a, vulnerabilities n/a, coverage n/a</title>
+<rect x="0.5" y="0.5" width="787" height="227" rx="6" fill="#ffffff" stroke="#e1e4e8"/>
+<text x="20" y="30" font-size="15" fill="#333333" font-weight="600">Activity</text>
+<text x="20" y="58" font-size="12" fill="#6a737d" font-weight="600">Issues</text>
+<rect x="80" y="49" width="10" height="10" rx="2" fill="#236a97"/>
+<text x="95" y="58" font-size="11" fill="#333333">Code Smells</text>
+<rect x="187" y="49" width="10" height="10" rx="2" fill="#24c6e0"/>
+<text x="202" y="58" font-size="11" fill="#333333">Bugs</text>
+<rect x="245" y="49" width="10" height="10" rx="2" fill="#d02f3a"/>
+<text x="260" y="58" font-size="11" fill="#333333">Vulnerabilities</text>
+<line x1="50" y1="204.0" x2="370" y2="204.0" stroke="#eeeeee"/>
+<text x="44" y="208" font-size="10" fill="#6a737d" text-anchor="end">0</text>
+<line x1="50" y1="171.5" x2="370" y2="171.5" stroke="#eeeeee"/>
+<text x="44" y="175.5" font-size="10" fill="#6a737d" text-anchor="end">1</text>
+<line x1="50" y1="139.0" x2="370" y2="139.0" stroke="#eeeeee"/>
+<text x="44" y="143" font-size="10" fill="#6a737d" text-anchor="end">2</text>
+<line x1="50" y1="106.5" x2="370" y2="106.5" stroke="#eeeeee"/>
+<text x="44" y="110.5" font-size="10" fill="#6a737d" text-anchor="end">3</text>
+<line x1="50" y1="74.0" x2="370" y2="74.0" stroke="#eeeeee"/>
+<text x="44" y="78" font-size="10" fill="#6a737d" text-anchor="end">4</text>
+<text x="210" y="220" font-size="10" fill="#6a737d" text-anchor="middle">Oct 31</text>
+<text x="420" y="58" font-size="12" fill="#6a737d" font-weight="600">Coverage</text>
+<line x1="450" y1="204.0" x2="760" y2="204.0" stroke="#eeeeee"/>
+<text x="444" y="208" font-size="10" fill="#6a737d" text-anchor="end">0%</text>
+<line x1="450" y1="171.5" x2="760" y2="171.5" stroke="#eeeeee"/>
+<text x="444" y="175.5" font-size="10" fill="#6a737d" text-anchor="end">25%</text>
+<line x1="450" y1="139.0" x2="760" y2="139.0" stroke="#eeeeee"/>
+<text x="444" y="143" font-size="10" fill="#6a737d" text-anchor="end">50%</text>
+<line x1="450" y1="106.5" x2="760" y2="106.5" stroke="#eeeeee"/>
+<text x="444" y="110.5" font-size="10" fill="#6a737d" text-anchor="end">75%</text>
+<line x1="450" y1="74.0" x2="760" y2="74.0" stroke="#eeeeee"/>
+<text x="444" y="78" font-size="10" fill="#6a737d" text-anchor="end">100%</text>
+<text x="605" y="220" font-size="10" fill="#6a737d" text-anchor="middle">Oct 31</text>
+<line x1="450" y1="100.0" x2="760" y2="100.0" stroke="#ed7d20" stroke-dasharray="4 3"/>
+<text x="760" y="95" font-size="10" fill="#ed7d20" text-anchor="end">fail_under 80%</text>
+</svg>

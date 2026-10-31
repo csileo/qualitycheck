@@ -104,6 +104,7 @@ def vulnerabilities(
             item["test_id"],
             item["issue_text"],
             item["issue_severity"].upper(),
+            item["issue_confidence"].upper(),
         )
         for item in _loads(process.stdout, {}).get("results", [])
     ]

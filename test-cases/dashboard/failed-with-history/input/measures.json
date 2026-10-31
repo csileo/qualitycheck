@@ -1,0 +1,256 @@
+{
+  "lint": [
+    [
+      "src/demo/core.py",
+      3,
+      "B006",
+      "Mutable default"
+    ],
+    [
+      "src/demo/core.py",
+      1,
+      "E501",
+      "Line too long"
+    ],
+    [
+      "src/demo/core.py",
+      2,
+      "E501",
+      "Line too long"
+    ],
+    [
+      "src/demo/core.py",
+      3,
+      "E501",
+      "Line too long"
+    ],
+    [
+      "src/demo/core.py",
+      4,
+      "E501",
+      "Line too long"
+    ],
+    [
+      "src/demo/core.py",
+      5,
+      "E501",
+      "Line too long"
+    ],
+    [
+      "src/demo/core.py",
+      6,
+      "E501",
+      "Line too long"
+    ],
+    [
+      "src/demo/core.py",
+      7,
+      "E501",
+      "Line too long"
+    ],
+    [
+      "src/demo/core.py",
+      8,
+      "E501",
+      "Line too long"
+    ],
+    [
+      "src/demo/core.py",
+      9,
+      "E501",
+      "Line too long"
+    ],
+    [
+      "src/demo/core.py",
+      10,
+      "E501",
+      "Line too long"
+    ],
+    [
+      "src/demo/core.py",
+      11,
+      "E501",
+      "Line too long"
+    ],
+    [
+      "src/demo/core.py",
+      12,
+      "E501",
+      "Line too long"
+    ],
+    [
+      "src/demo/core.py",
+      13,
+      "E501",
+      "Line too long"
+    ],
+    [
+      "src/demo/core.py",
+      14,
+      "E501",
+      "Line too long"
+    ],
+    [
+      "src/demo/core.py",
+      15,
+      "E501",
+      "Line too long"
+    ],
+    [
+      "src/demo/core.py",
+      16,
+      "E501",
+      "Line too long"
+    ],
+    [
+      "src/demo/core.py",
+      17,
+      "E501",
+      "Line too long"
+    ],
+    [
+      "src/demo/core.py",
+      18,
+      "E501",
+      "Line too long"
+    ],
+    [
+      "src/demo/core.py",
+      19,
+      "E501",
+      "Line too long"
+    ],
+    [
+      "src/demo/core.py",
+      20,
+      "E501",
+      "Line too long"
+    ],
+    [
+      "src/demo/core.py",
+      21,
+      "E501",
+      "Line too long"
+    ],
+    [
+      "src/demo/core.py",
+      22,
+      "E501",
+      "Line too long"
+    ],
+    [
+      "src/demo/core.py",
+      23,
+      "E501",
+      "Line too long"
+    ],
+    [
+      "src/demo/core.py",
+      24,
+      "E501",
+      "Line too long"
+    ],
+    [
+      "src/demo/core.py",
+      25,
+      "E501",
+      "Line too long"
+    ],
+    [
+      "src/demo/core.py",
+      26,
+      "E501",
+      "Line too long"
+    ],
+    [
+      "src/demo/core.py",
+      27,
+      "E501",
+      "Line too long"
+    ],
+    [
+      "src/demo/core.py",
+      28,
+      "E501",
+      "Line too long"
+    ],
+    [
+      "src/demo/core.py",
+      29,
+      "E501",
+      "Line too long"
+    ],
+    [
+      "src/demo/core.py",
+      30,
+      "E501",
+      "Line too long"
+    ],
+    [
+      "src/demo/core.py",
+      31,
+      "E501",
+      "Line too long"
+    ],
+    [
+      "src/demo/core.py",
+      32,
+      "E501",
+      "Line too long"
+    ],
+    [
+      "src/demo/core.py",
+      33,
+      "E501",
+      "Line too long"
+    ],
+    [
+      "src/demo/core.py",
+      34,
+      "E501",
+      "Line too long"
+    ],
+    [
+      "src/demo/core.py",
+      35,
+      "E501",
+      "Line too long"
+    ],
+    [
+      "src/demo/core.py",
+      36,
+      "E501",
+      "Line too long"
+    ],
+    [
+      "src/demo/core.py",
+      37,
+      "E501",
+      "Line too long"
+    ]
+  ],
+  "vulnerabilities": [
+    [
+      "src/demo/core.py",
+      12,
+      "B307",
+      "eval",
+      "MEDIUM",
+      "HIGH"
+    ],
+    [
+      "src/demo/run.py",
+      3,
+      "B404",
+      "subprocess",
+      "LOW",
+      "HIGH"
+    ]
+  ],
+  "duplicates": [
+    "Similar lines in 2 files: demo.first:[5:12], demo.second:[5:12]"
+  ],
+  "coverage": 76.4,
+  "sloc": 3100,
+  "fail_under": 80
+}

@@ -1,0 +1,169 @@
+![Quality Gate: Failed, 4 conditions failed: bugs: 1 bug(s); vulnerabilities: 1 medium or high; duplication: 1 duplicated block(s); coverage: 76.4% (fail_under 80%)](images/quality-gate.svg)
+
+[![Reliability: rating C, 1 bug, Failed](images/reliability.svg)](#bugs)
+[![Security: rating C, 1 vulnerability, Failed](images/security.svg)](#vulnerabilities-medium-and-high)
+[![Maintainability: rating A, 37 code smells, debt ratio 0.2%](images/maintainability.svg)](#smells-first-30)
+
+[![Coverage: 76.4%, fail_under 80%, Failed](images/coverage.svg)](#gates)
+[![Duplications: 0.5%, on 3100 lines, Failed](images/duplications.svg)](#duplication)
+[![Security Hotspots: 1 to review](images/security-hotspots.svg)](#low-severity-vulnerabilities)
+
+![Activity over the last 6 checks: at the last one, code smells 37, bugs 1, vulnerabilities 1, coverage 76.4%](images/activity.svg)
+
+=== quality-gate.svg
+<svg xmlns="http://www.w3.org/2000/svg" width="788" height="150" viewBox="0 0 788 150" role="img" aria-label="Quality Gate: Failed, 4 conditions failed: bugs: 1 bug(s); vulnerabilities: 1 medium or high; duplication: 1 duplicated block(s); coverage: 76.4% (fail_under 80%)" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif">
+<title>Quality Gate: Failed, 4 conditions failed: bugs: 1 bug(s); vulnerabilities: 1 medium or high; duplication: 1 duplicated block(s); coverage: 76.4% (fail_under 80%)</title>
+<rect x="0.5" y="0.5" width="787" height="149" rx="6" fill="#ffffff" stroke="#e1e4e8"/>
+<rect x="0" y="0" width="8" height="150" rx="4" fill="#d02f3a"/>
+<text x="28" y="30" font-size="13" fill="#6a737d" font-weight="600">Quality Gate</text>
+<circle cx="46" cy="62" r="16" fill="#d02f3a"/>
+<path d="M40 56 L52 68 M52 56 L40 68" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round"/>
+<text x="72" y="72" font-size="30" fill="#d02f3a" font-weight="bold">Failed</text>
+<text x="210" y="58" font-size="14" fill="#333333" font-weight="600">4 conditions failed</text>
+<text x="210" y="78" font-size="12" fill="#6a737d">bugs: 1 bug(s)</text>
+<text x="210" y="96" font-size="12" fill="#6a737d">vulnerabilities: 1 medium or high</text>
+<text x="210" y="114" font-size="12" fill="#6a737d">duplication: 1 duplicated block(s)</text>
+<text x="210" y="132" font-size="12" fill="#6a737d">coverage: 76.4% (fail_under 80%)</text>
+<text x="768" y="40" font-size="22" fill="#236a97" font-weight="600" text-anchor="end">3.1k</text>
+<text x="768" y="60" font-size="12" fill="#6a737d" text-anchor="end">lines of code · Python</text>
+</svg>
+
+=== reliability.svg
+<svg xmlns="http://www.w3.org/2000/svg" width="260" height="128" viewBox="0 0 260 128" role="img" aria-label="Reliability: rating C, 1 bug, Failed" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif">
+<title>Reliability: rating C, 1 bug, Failed</title>
+<rect x="0.5" y="0.5" width="259" height="127" rx="6" fill="#ffffff" stroke="#e1e4e8"/>
+<text x="16" y="28" font-size="14" fill="#333333" font-weight="600">Reliability</text>
+<rect x="190" y="14" width="56" height="20" rx="10" fill="#d02f3a"/><text x="218" y="28" font-size="11" fill="#ffffff" font-weight="600" text-anchor="middle">Failed</text>
+<text x="16" y="78" font-size="30" fill="#236a97" font-weight="600">1</text>
+<text x="16" y="104" font-size="12" fill="#6a737d">bug</text>
+<circle cx="220" cy="82" r="20" fill="#eabe06"/><text x="220" y="89" font-size="20" fill="#ffffff" font-weight="bold" text-anchor="middle">C</text>
+</svg>
+
+=== security.svg
+<svg xmlns="http://www.w3.org/2000/svg" width="260" height="128" viewBox="0 0 260 128" role="img" aria-label="Security: rating C, 1 vulnerability, Failed" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif">
+<title>Security: rating C, 1 vulnerability, Failed</title>
+<rect x="0.5" y="0.5" width="259" height="127" rx="6" fill="#ffffff" stroke="#e1e4e8"/>
+<text x="16" y="28" font-size="14" fill="#333333" font-weight="600">Security</text>
+<rect x="190" y="14" width="56" height="20" rx="10" fill="#d02f3a"/><text x="218" y="28" font-size="11" fill="#ffffff" font-weight="600" text-anchor="middle">Failed</text>
+<text x="16" y="78" font-size="30" fill="#236a97" font-weight="600">1</text>
+<text x="16" y="104" font-size="12" fill="#6a737d">vulnerability</text>
+<circle cx="220" cy="82" r="20" fill="#eabe06"/><text x="220" y="89" font-size="20" fill="#ffffff" font-weight="bold" text-anchor="middle">C</text>
+</svg>
+
+=== maintainability.svg
+<svg xmlns="http://www.w3.org/2000/svg" width="260" height="128" viewBox="0 0 260 128" role="img" aria-label="Maintainability: rating A, 37 code smells, debt ratio 0.2%" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif">
+<title>Maintainability: rating A, 37 code smells, debt ratio 0.2%</title>
+<rect x="0.5" y="0.5" width="259" height="127" rx="6" fill="#ffffff" stroke="#e1e4e8"/>
+<text x="16" y="28" font-size="14" fill="#333333" font-weight="600">Maintainability</text>
+<text x="16" y="78" font-size="30" fill="#236a97" font-weight="600">37</text>
+<text x="16" y="104" font-size="12" fill="#6a737d">code smells · 0.2% debt</text>
+<circle cx="220" cy="82" r="20" fill="#00aa00"/><text x="220" y="89" font-size="20" fill="#ffffff" font-weight="bold" text-anchor="middle">A</text>
+</svg>
+
+=== coverage.svg
+<svg xmlns="http://www.w3.org/2000/svg" width="260" height="128" viewBox="0 0 260 128" role="img" aria-label="Coverage: 76.4%, fail_under 80%, Failed" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif">
+<title>Coverage: 76.4%, fail_under 80%, Failed</title>
+<rect x="0.5" y="0.5" width="259" height="127" rx="6" fill="#ffffff" stroke="#e1e4e8"/>
+<text x="16" y="28" font-size="14" fill="#333333" font-weight="600">Coverage</text>
+<rect x="190" y="14" width="56" height="20" rx="10" fill="#d02f3a"/><text x="218" y="28" font-size="11" fill="#ffffff" font-weight="600" text-anchor="middle">Failed</text>
+<text x="16" y="78" font-size="30" fill="#236a97" font-weight="600">76.4%</text>
+<text x="16" y="104" font-size="12" fill="#6a737d">fail_under 80%</text>
+<circle cx="220" cy="82" r="20" fill="none" stroke="#d02f3a" stroke-width="7"/><circle cx="220" cy="82" r="20" fill="none" stroke="#00aa00" stroke-width="7" stroke-dasharray="96.0 125.7" transform="rotate(-90 220 82)"/>
+</svg>
+
+=== duplications.svg
+<svg xmlns="http://www.w3.org/2000/svg" width="260" height="128" viewBox="0 0 260 128" role="img" aria-label="Duplications: 0.5%, on 3100 lines, Failed" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif">
+<title>Duplications: 0.5%, on 3100 lines, Failed</title>
+<rect x="0.5" y="0.5" width="259" height="127" rx="6" fill="#ffffff" stroke="#e1e4e8"/>
+<text x="16" y="28" font-size="14" fill="#333333" font-weight="600">Duplications</text>
+<rect x="190" y="14" width="56" height="20" rx="10" fill="#d02f3a"/><text x="218" y="28" font-size="11" fill="#ffffff" font-weight="600" text-anchor="middle">Failed</text>
+<text x="16" y="78" font-size="30" fill="#236a97" font-weight="600">0.5%</text>
+<text x="16" y="104" font-size="12" fill="#6a737d">on 3100 lines</text>
+<circle cx="220" cy="82" r="20" fill="none" stroke="#eeeeee" stroke-width="7"/><circle cx="220" cy="82" r="20" fill="none" stroke="#eabe06" stroke-width="7" stroke-dasharray="0.6 125.7" transform="rotate(-90 220 82)"/>
+</svg>
+
+=== security-hotspots.svg
+<svg xmlns="http://www.w3.org/2000/svg" width="260" height="128" viewBox="0 0 260 128" role="img" aria-label="Security Hotspots: 1 to review" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif">
+<title>Security Hotspots: 1 to review</title>
+<rect x="0.5" y="0.5" width="259" height="127" rx="6" fill="#ffffff" stroke="#e1e4e8"/>
+<text x="16" y="28" font-size="14" fill="#333333" font-weight="600">Security Hotspots</text>
+<text x="16" y="78" font-size="30" fill="#236a97" font-weight="600">1</text>
+<text x="16" y="104" font-size="12" fill="#6a737d">low severity, to review</text>
+<circle cx="220" cy="82" r="20" fill="none" stroke="#b0d513" stroke-width="3"/><text x="220" y="89" font-size="20" fill="#b0d513" font-weight="bold" text-anchor="middle">!</text>
+</svg>
+
+=== activity.svg
+<svg xmlns="http://www.w3.org/2000/svg" width="788" height="228" viewBox="0 0 788 228" role="img" aria-label="Activity over the last 6 checks: at the last one, code smells 37, bugs 1, vulnerabilities 1, coverage 76.4%" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif">
+<title>Activity over the last 6 checks: at the last one, code smells 37, bugs 1, vulnerabilities 1, coverage 76.4%</title>
+<rect x="0.5" y="0.5" width="787" height="227" rx="6" fill="#ffffff" stroke="#e1e4e8"/>
+<text x="20" y="30" font-size="15" fill="#333333" font-weight="600">Activity</text>
+<text x="20" y="58" font-size="12" fill="#6a737d" font-weight="600">Issues</text>
+<rect x="80" y="49" width="10" height="10" rx="2" fill="#236a97"/>
+<text x="95" y="58" font-size="11" fill="#333333">Code Smells</text>
+<rect x="187" y="49" width="10" height="10" rx="2" fill="#24c6e0"/>
+<text x="202" y="58" font-size="11" fill="#333333">Bugs</text>
+<rect x="245" y="49" width="10" height="10" rx="2" fill="#d02f3a"/>
+<text x="260" y="58" font-size="11" fill="#333333">Vulnerabilities</text>
+<line x1="50" y1="204.0" x2="370" y2="204.0" stroke="#eeeeee"/>
+<text x="44" y="208" font-size="10" fill="#6a737d" text-anchor="end">0</text>
+<line x1="50" y1="171.5" x2="370" y2="171.5" stroke="#eeeeee"/>
+<text x="44" y="175.5" font-size="10" fill="#6a737d" text-anchor="end">13</text>
+<line x1="50" y1="139.0" x2="370" y2="139.0" stroke="#eeeeee"/>
+<text x="44" y="143" font-size="10" fill="#6a737d" text-anchor="end">26</text>
+<line x1="50" y1="106.5" x2="370" y2="106.5" stroke="#eeeeee"/>
+<text x="44" y="110.5" font-size="10" fill="#6a737d" text-anchor="end">39</text>
+<line x1="50" y1="74.0" x2="370" y2="74.0" stroke="#eeeeee"/>
+<text x="44" y="78" font-size="10" fill="#6a737d" text-anchor="end">52</text>
+<text x="50" y="220" font-size="10" fill="#6a737d" text-anchor="middle">Oct 25</text>
+<text x="114" y="220" font-size="10" fill="#6a737d" text-anchor="middle">Oct 26</text>
+<text x="178" y="220" font-size="10" fill="#6a737d" text-anchor="middle">Oct 27</text>
+<text x="242" y="220" font-size="10" fill="#6a737d" text-anchor="middle">Oct 28</text>
+<text x="306" y="220" font-size="10" fill="#6a737d" text-anchor="middle">Oct 29</text>
+<text x="370" y="220" font-size="10" fill="#6a737d" text-anchor="middle">Oct 31</text>
+<polyline points="50.0,81.5 114.0,84.0 178.0,86.5 242.0,94.0 306.0,104.0 370.0,111.5" fill="none" stroke="#236a97" stroke-width="2"/>
+<circle cx="50.0" cy="81.5" r="2.5" fill="#236a97"/>
+<circle cx="114.0" cy="84.0" r="2.5" fill="#236a97"/>
+<circle cx="178.0" cy="86.5" r="2.5" fill="#236a97"/>
+<circle cx="242.0" cy="94.0" r="2.5" fill="#236a97"/>
+<circle cx="306.0" cy="104.0" r="2.5" fill="#236a97"/>
+<circle cx="370.0" cy="111.5" r="2.5" fill="#236a97"/>
+<polyline points="50.0,199.0 114.0,199.0 178.0,199.0 242.0,201.5 306.0,204.0 370.0,201.5" fill="none" stroke="#24c6e0" stroke-width="2"/>
+<circle cx="50.0" cy="199.0" r="2.5" fill="#24c6e0"/>
+<circle cx="114.0" cy="199.0" r="2.5" fill="#24c6e0"/>
+<circle cx="178.0" cy="199.0" r="2.5" fill="#24c6e0"/>
+<circle cx="242.0" cy="201.5" r="2.5" fill="#24c6e0"/>
+<circle cx="306.0" cy="204.0" r="2.5" fill="#24c6e0"/>
+<circle cx="370.0" cy="201.5" r="2.5" fill="#24c6e0"/>
+<polyline points="50.0,204.0 114.0,204.0 178.0,201.5 242.0,204.0 306.0,204.0 370.0,201.5" fill="none" stroke="#d02f3a" stroke-width="2"/>
+<circle cx="50.0" cy="204.0" r="2.5" fill="#d02f3a"/>
+<circle cx="114.0" cy="204.0" r="2.5" fill="#d02f3a"/>
+<circle cx="178.0" cy="201.5" r="2.5" fill="#d02f3a"/>
+<circle cx="242.0" cy="204.0" r="2.5" fill="#d02f3a"/>
+<circle cx="306.0" cy="204.0" r="2.5" fill="#d02f3a"/>
+<circle cx="370.0" cy="201.5" r="2.5" fill="#d02f3a"/>
+<text x="420" y="58" font-size="12" fill="#6a737d" font-weight="600">Coverage</text>
+<line x1="450" y1="204.0" x2="760" y2="204.0" stroke="#eeeeee"/>
+<text x="444" y="208" font-size="10" fill="#6a737d" text-anchor="end">0%</text>
+<line x1="450" y1="171.5" x2="760" y2="171.5" stroke="#eeeeee"/>
+<text x="444" y="175.5" font-size="10" fill="#6a737d" text-anchor="end">25%</text>
+<line x1="450" y1="139.0" x2="760" y2="139.0" stroke="#eeeeee"/>
+<text x="444" y="143" font-size="10" fill="#6a737d" text-anchor="end">50%</text>
+<line x1="450" y1="106.5" x2="760" y2="106.5" stroke="#eeeeee"/>
+<text x="444" y="110.5" font-size="10" fill="#6a737d" text-anchor="end">75%</text>
+<line x1="450" y1="74.0" x2="760" y2="74.0" stroke="#eeeeee"/>
+<text x="444" y="78" font-size="10" fill="#6a737d" text-anchor="end">100%</text>
+<text x="450" y="220" font-size="10" fill="#6a737d" text-anchor="middle">Oct 25</text>
+<text x="512" y="220" font-size="10" fill="#6a737d" text-anchor="middle">Oct 26</text>
+<text x="574" y="220" font-size="10" fill="#6a737d" text-anchor="middle">Oct 27</text>
+<text x="636" y="220" font-size="10" fill="#6a737d" text-anchor="middle">Oct 28</text>
+<text x="698" y="220" font-size="10" fill="#6a737d" text-anchor="middle">Oct 29</text>
+<text x="760" y="220" font-size="10" fill="#6a737d" text-anchor="middle">Oct 31</text>
+<polyline points="450.0,108.5 574.0,102.3 636.0,98.7 698.0,97.0 760.0,104.7" fill="none" stroke="#00aa00" stroke-width="2"/>
+<circle cx="450.0" cy="108.5" r="2.5" fill="#00aa00"/>
+<circle cx="574.0" cy="102.3" r="2.5" fill="#00aa00"/>
+<circle cx="636.0" cy="98.7" r="2.5" fill="#00aa00"/>
+<circle cx="698.0" cy="97.0" r="2.5" fill="#00aa00"/>
+<circle cx="760.0" cy="104.7" r="2.5" fill="#00aa00"/>
+<line x1="450" y1="100.0" x2="760" y2="100.0" stroke="#ed7d20" stroke-dasharray="4 3"/>
+<text x="760" y="95" font-size="10" fill="#ed7d20" text-anchor="end">fail_under 80%</text>
+</svg>

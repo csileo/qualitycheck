@@ -28,6 +28,7 @@ class Vulnerability:
     code: str
     message: str
     severity: str
+    confidence: str = "HIGH"
 
 
 @dataclass(frozen=True)

@@ -5,6 +5,18 @@
 - Result: **FAIL**
 - Last passing commit: `bbbbbbbbbb`, 2026-10-30T09:00+01:00
 
+![Quality Gate: Failed, 6 conditions failed: tests: pytest is missing from the environment; bugs: ruff is missing from the environment; vulnerabilities: bandit is missing from the environment; maintainability: radon is missing from the environment; duplication: pylint is missing from the environment; complexity: ruff is missing from the environment](images/quality-gate.svg)
+
+[![Reliability: n/a, ruff is missing](images/reliability.svg)](#bugs)
+[![Security: n/a, bandit is missing](images/security.svg)](#vulnerabilities-medium-and-high)
+[![Maintainability: n/a, ruff is missing](images/maintainability.svg)](#smells-first-30)
+
+[![Coverage: 90.0%, fail_under 80%](images/coverage.svg)](#gates)
+[![Duplications: n/a, pylint is missing](images/duplications.svg)](#duplication)
+[![Security Hotspots: n/a, bandit is missing](images/security-hotspots.svg)](#low-severity-vulnerabilities)
+
+![Activity over the last 1 check: at the last one, code smells 0, bugs 0, vulnerabilities 0, coverage 90.0%](images/activity.svg)
+
 ## Gates
 
 | Gate | Result | Detail |

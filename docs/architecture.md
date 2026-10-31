@@ -23,6 +23,9 @@ flowchart TB
     cli --> core
     subgraph core[Functional core, no I/O]
         gates --> report
+        ratings --> dashboard
+        svg --> dashboard
+        report --> dashboard
         history --> report
         status
     end
@@ -39,6 +42,9 @@ flowchart TB
 | `lychee` | finds or downloads the pinned lychee; sorts its findings |
 | `gates` | judges the measures: one gate each, PASS, FAIL or n/a |
 | `report` | renders `report.md` |
+| `dashboard` | the Sonar-like dashboard: its images and the Markdown showing them |
+| `ratings` | Sonar's ratings, debt ratio, duplications and hotspots, for display only |
+| `svg` | draws the gate banner, the tiles and the activity chart as SVG text |
 | `history` | reads and appends `history.csv` |
 | `status` | the reminder before a push |
 | `repository` | refuses a dirty tree, continues the history, publishes the branch |

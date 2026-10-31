@@ -123,11 +123,19 @@ def _trend(rows: list[dict[str, str]]) -> list[str]:
 
 
 def render(
-    run: Run, gates: list[g.Gate], m: g.Measures, rows: list[dict[str, str]]
+    run: Run,
+    gates: list[g.Gate],
+    m: g.Measures,
+    rows: list[dict[str, str]],
+    dashboard: list[str],
 ) -> str:
-    """Return the report; rows is the history, the current run included."""
+    """Return the report; rows is the history, the current run included.
+
+    dashboard holds the lines showing the dashboard's images, after the header.
+    """
     parts = [
         _header(run, rows),
+        ["", *dashboard] if dashboard else [],
         _gates(gates),
         _metrics(m),
         _findings(m),
