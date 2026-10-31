@@ -21,7 +21,7 @@ qualitycheck = "qualitycheck.cli:main"
 
 [dependency-groups]
 # Exact versions of the whole tooling, shared with the template and the other tools.
-dev = ["commonreqs @ git+https://github.com/csileo/commonreqs@2d6e1f2"]
+dev = ["commonreqs @ git+https://github.com/csileo/commonreqs@v1.0.0"]
 
 [build-system]
 requires = ["hatchling"]

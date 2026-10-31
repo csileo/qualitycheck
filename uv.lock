@@ -60,7 +60,7 @@ wheels = [
 [[package]]
 name = "commonreqs"
 version = "1.0.0"
-source = { git = "https://github.com/csileo/commonreqs?rev=2d6e1f2#2d6e1f2f90d1b763062fb2c360ff3bcb12aa95f2" }
+source = { git = "https://github.com/csileo/commonreqs?rev=v1.0.0#2d6e1f2f90d1b763062fb2c360ff3bcb12aa95f2" }
 dependencies = [
     { name = "astroid" },
     { name = "bandit" },
@@ -822,7 +822,7 @@ requires-dist = [
 ]
 
 [package.metadata.requires-dev]
-dev = [{ name = "commonreqs", git = "https://github.com/csileo/commonreqs?rev=2d6e1f2" }]
+dev = [{ name = "commonreqs", git = "https://github.com/csileo/commonreqs?rev=v1.0.0" }]
 
 [[package]]
 name = "radon"
