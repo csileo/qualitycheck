@@ -30,12 +30,14 @@ def git(cwd: Path, *args: str) -> str:
     return result.stdout.strip()
 
 
-def run_check(project: Path, *args: str) -> subprocess.CompletedProcess:
+def run_check(
+    project: Path, *args: str, env: dict | None = None
+) -> subprocess.CompletedProcess:
     """Run qualitycheck in project with this environment's Python and tools."""
     return subprocess.run(
         [sys.executable, "-m", "qualitycheck", *args],
         cwd=project,
-        env={**os.environ, **GIT_IDENTITY},
+        env={**os.environ, **GIT_IDENTITY, **(env or {})},
         capture_output=True,
         text=True,
         encoding="utf-8",

@@ -16,6 +16,7 @@
 | duplication | FAIL | 1 duplicated block(s) |
 | complexity | PASS | 0 function(s) too complex |
 | coverage | n/a | 100.0% (no fail_under) |
+| links | PASS | 0 broken link(s) |
 
 ## Metrics
 
@@ -51,6 +52,10 @@
 - none
 
 ## Low-severity vulnerabilities
+
+- none
+
+## Broken links
 
 - none
 

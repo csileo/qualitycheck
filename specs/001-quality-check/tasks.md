@@ -22,8 +22,8 @@
 
 ## Phase 4: US-03 - Check the links
 
-- [ ] T010 [US3] Steps of `tests/bdd/features/links.feature` in `tests/bdd/test_links.py`; red
-- [ ] T011 [US3] `lychee.py` and the links gate; green
+- [X] T010 [US3] Steps of `tests/bdd/features/links.feature` in `tests/bdd/test_links.py`; red
+- [X] T011 [US3] `lychee.py` and the links gate; green
 
 ## Phase 5: US-04 - Be reminded before pushing unchecked code
 

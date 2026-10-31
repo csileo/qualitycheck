@@ -10,6 +10,7 @@ COLUMNS = [
     "smells",
     "complex_functions",
     "duplicated_blocks",
+    "broken_links",
     "coverage",
     "sloc",
 ]

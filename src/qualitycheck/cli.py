@@ -38,6 +38,7 @@ def _row(run: Run, m: gates.Measures, judged: list[gates.Gate]) -> dict[str, str
         "smells": str(len(gates.smells(m.lint))),
         "complex_functions": str(len(gates.complex_functions(m.lint))),
         "duplicated_blocks": str(len(m.duplicates or [])),
+        "broken_links": "" if m.links is None else str(len(m.links)),
         "coverage": "" if m.coverage is None else f"{m.coverage:.1f}",
         "sloc": str(m.sloc),
     }

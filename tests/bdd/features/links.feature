@@ -12,6 +12,6 @@ Feature: Link check
 
   Scenario: Without the network, the link check only warns
     Given a clean project whose README links to a missing page
-    And no network
+    And no network, with lychee not downloaded yet
     When I run the quality check
     Then the result is "PASS" and the report warns that links were not checked

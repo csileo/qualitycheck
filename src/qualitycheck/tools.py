@@ -9,6 +9,7 @@ import tempfile
 import xml.etree.ElementTree as ET  # nosec B405 - parses the coverage.xml just written
 from pathlib import Path
 
+from qualitycheck import lychee
 from qualitycheck.gates import Finding, Measures, PytestRun, Vulnerability
 
 CODE_DIRS = ["src", "tests"]
@@ -171,11 +172,40 @@ def tests(root: Path, out: Path) -> tuple[PytestRun | None, float | None]:
     )
 
 
+def links(root: Path) -> tuple[list[Finding] | None, int]:
+    """Lychee on the tracked Markdown files: broken links, and links left unchecked."""
+    listed = subprocess.run(
+        ["git", "ls-files", "--", "*.md"],
+        cwd=root,
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        check=False,
+    ).stdout.split()
+    if not listed:
+        return [], 0
+    program = lychee.binary()
+    if program is None:
+        return None, 0
+    process = subprocess.run(
+        [str(program), "--no-progress", "--format", "json", *listed],
+        cwd=root,
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        errors="replace",
+        check=False,
+    )
+    report = _loads(process.stdout, None)
+    return (None, 0) if report is None else lychee.broken_and_unchecked(report)
+
+
 def measure(root: Path, out: Path) -> Measures:
     """Run every tool on the project at root; outputs go to out."""
     dirs = [name for name in CODE_DIRS if (root / name).is_dir()]
     test_run, coverage = tests(root, out)
     ranks, sloc = maintainability(root)
+    broken, unchecked = links(root)
     return Measures(
         tests=test_run,
         coverage=coverage,
@@ -184,4 +214,6 @@ def measure(root: Path, out: Path) -> Measures:
         maintainability=ranks,
         duplicates=duplicates(root),
         sloc=sloc,
+        links=broken,
+        unchecked_links=unchecked,
     )

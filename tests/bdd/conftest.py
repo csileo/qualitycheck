@@ -9,7 +9,7 @@ def run(project_case, checked):
     if project_case["project"] is None:
         return checked(project_case["case"])
     project = project_case["project"]
-    return project, run_check(project)
+    return project, run_check(project, env=project_case.get("env"))
 
 
 @then(parsers.parse('the result is "{result}" and the exit code {code:d}'))

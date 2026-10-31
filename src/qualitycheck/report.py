@@ -102,6 +102,7 @@ def _findings(m: g.Measures) -> list[str]:
         *_section("Duplication", m.duplicates or [], str),
         *_section(f"Smells (first {SMELLS_SHOWN})", smells[:SMELLS_SHOWN], _finding),
         *_section("Low-severity vulnerabilities", low, _finding),
+        *_section("Broken links", m.links or [], _finding),
     ]
 
 

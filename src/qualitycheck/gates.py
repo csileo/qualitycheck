@@ -1,7 +1,7 @@
 """Gates: the tools' measures judged against the project's thresholds."""
 
 import re
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 
 BUG = re.compile(r"^(F|B|PLE)\d")
 COMPLEXITY = "C901"
@@ -50,6 +50,8 @@ class Measures:
     maintainability: dict[str, str] | None
     duplicates: list[str] | None
     sloc: int
+    links: list[Finding] | None = field(default_factory=list)
+    unchecked_links: int = 0
 
 
 @dataclass(frozen=True)
@@ -124,6 +126,15 @@ def _maintainability(ranks: dict[str, str] | None) -> Gate:
     return _count("maintainability", unmaintainable(ranks), "file(s) below A")
 
 
+def _links(links: list[Finding] | None, unchecked: int) -> Gate:
+    if links is None:
+        return Gate("links", "n/a", "lychee unavailable (offline?): links not checked")
+    detail = f"{len(links)} broken link(s)"
+    if unchecked:
+        detail += f", {unchecked} not checked (network)"
+    return Gate("links", "FAIL" if links else "PASS", detail)
+
+
 def evaluate(m: Measures, fail_under: float | None) -> list[Gate]:
     """Judge the measures, gate by gate."""
     lint = m.lint
@@ -143,6 +154,7 @@ def evaluate(m: Measures, fail_under: float | None) -> list[Gate]:
         if lint is None
         else _count("complexity", complex_functions(lint), "function(s) too complex"),
         _coverage(m.coverage, fail_under),
+        _links(m.links, m.unchecked_links),
     ]
 
 

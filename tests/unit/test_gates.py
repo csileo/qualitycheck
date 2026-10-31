@@ -72,3 +72,17 @@ def test_maintainability_below_a_fails():
     m = measures(maintainability={"src/a.py": "A", "src/b.py": "C"})
     assert statuses(m)["maintainability"] == "FAIL"
     assert statuses(measures(maintainability={}))["maintainability"] == "n/a"
+
+
+def test_broken_links_fail_unchecked_ones_do_not():
+    broken = [Finding("README.md", 3, "404", "https://example.com/gone")]
+    assert statuses(measures(links=broken))["links"] == "FAIL"
+    gates = {g.name: g for g in evaluate(measures(links=[], unchecked_links=2), 80)}
+    assert gates["links"].status == "PASS"
+    assert "2 not checked" in gates["links"].detail
+
+
+def test_links_not_checked_without_lychee():
+    gates = {gate.name: gate for gate in evaluate(measures(links=None), 80)}
+    assert gates["links"].status == "n/a"
+    assert "not checked" in gates["links"].detail
