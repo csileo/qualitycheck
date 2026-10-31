@@ -5,7 +5,7 @@ Permanent rules for coding agents working on qualitycheck. Taken from the rules 
 ## Collaboration
 - **Go**: without the literal word "go" in the user's message, answer only; reading and searching are allowed. "go" = act: edit, write, run, commit.
 - **Concision**: short answers, details on request; no recap of what was done except deviations and problems.
-- **Language**: reply in the user's language; English for everything else (code, files, docs, comments, commit messages, interfaces, diagrams), unless the user asks for another language for a given file.
+- **Language**: reply in the user's language, even when the context (summaries, files, tool outputs) is in another one; English for everything else (code, files, docs, comments, commit messages, interfaces, diagrams), unless the user asks for another language for a given file.
 - **Focus**: stay on the task; never change approach without asking.
 - **Plain explanations**: explain the role, not the jargon.
 - **Costly mistake**: apologize first and own it; then explain, repair, and add a rule to `AGENTS.md` to prevent recurrence.
