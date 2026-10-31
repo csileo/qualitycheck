@@ -2,15 +2,17 @@
 
 import argparse
 import datetime as dt
+import shutil
 import subprocess
 import sys
 from pathlib import Path
 
-from qualitycheck import gates, history, settings, tools
+from qualitycheck import gates, history, repository, settings, tools
 from qualitycheck.report import Run, render
 
 REPORT_DIR = Path("docs") / "qualitycheck-report"
-SETTINGS_ERROR = 2
+# Invalid settings, or a tree the result could not describe.
+CANNOT_RUN = 2
 
 
 def _head(root: Path) -> str:
@@ -41,25 +43,49 @@ def _row(run: Run, m: gates.Measures, judged: list[gates.Gate]) -> dict[str, str
     }
 
 
-def check(root: Path) -> int:
-    """Run the check of the project at root; return the exit code."""
+def _warn(message: str) -> None:
+    print(f"qualitycheck: {message}", file=sys.stderr)
+
+
+def _settings(root: Path) -> settings.Settings | None:
     try:
         own = settings.load(root)
     except settings.SettingsError as error:
-        print(f"qualitycheck: {error}", file=sys.stderr)
-        return SETTINGS_ERROR
+        _warn(str(error))
+        return None
+    refused = repository.refusal(root, REPORT_DIR)
+    if refused:
+        _warn(refused)
+        return None
+    return own
+
+
+def _fresh_output(root: Path) -> Path:
     out = root / REPORT_DIR
-    out.mkdir(parents=True, exist_ok=True)
+    shutil.rmtree(out, ignore_errors=True)
+    out.mkdir(parents=True)
+    return out
+
+
+def check(root: Path) -> int:
+    """Run the check of the project at root, publish it; return the exit code."""
+    own = _settings(root)
+    if own is None:
+        return CANNOT_RUN
+    previous = repository.previous_history(root)
+    out = _fresh_output(root)
     measures = tools.measure(root, out)
     judged = gates.evaluate(measures, own.fail_under)
     date = dt.datetime.now().astimezone().isoformat(timespec="minutes")
     run = Run(_head(root), date, gates.result(judged))
-    path = out / "history.csv"
-    previous = path.read_bytes().decode("utf-8") if path.exists() else ""
     text = history.append(previous, _row(run, measures, judged))
     report = render(run, judged, measures, history.parse(text))
     (out / "report.md").write_bytes(report.encode("utf-8"))
-    path.write_bytes(text.encode("utf-8"))
+    (out / "history.csv").write_bytes(text.encode("utf-8"))
+    repository.publish(root, out)
+    warning = repository.push(root)
+    if warning:
+        _warn(warning)
     print(f"qualitycheck: {run.result} - {REPORT_DIR.as_posix()}/report.md")
     return 0 if run.result == "PASS" else 1
 

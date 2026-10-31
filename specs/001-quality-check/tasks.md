@@ -17,8 +17,8 @@
 
 ## Phase 3: US-02 - Publish each check without growing the repository
 
-- [ ] T008 [US2] Steps of `tests/bdd/features/publish.feature` in `tests/bdd/test_publish.py`; red
-- [ ] T009 [US2] `repository.py`: dirty tree, ignored outputs, fetch, replaced branch, push with warning; green
+- [X] T008 [US2] Steps of `tests/bdd/features/publish.feature` in `tests/bdd/test_publish.py`; red
+- [X] T009 [US2] `repository.py`: dirty tree, ignored outputs, fetch, replaced branch, push with warning; green
 
 ## Phase 4: US-03 - Check the links
 
