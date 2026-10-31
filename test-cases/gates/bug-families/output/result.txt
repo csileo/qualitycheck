@@ -1,0 +1,9 @@
+tests: PASS - 1 passed
+bugs: FAIL - 3 bug(s)
+vulnerabilities: PASS - 0 medium or high
+maintainability: PASS - 0 file(s) below A
+duplication: PASS - 0 duplicated block(s)
+complexity: PASS - 0 function(s) too complex
+coverage: PASS - 90.0% (fail_under 80%)
+links: PASS - 0 broken link(s)
+result: FAIL

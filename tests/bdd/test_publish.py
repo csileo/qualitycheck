@@ -1,4 +1,4 @@
-from check_runs import REPORT, committed_copy, git, run_check
+from conftest import REPORT, committed_copy, git, run_check
 from pytest_bdd import given, parsers, scenarios, then
 
 scenarios("publish.feature")

@@ -1,4 +1,4 @@
-from check_runs import committed_copy, git, header, report
+from conftest import committed_copy, git, header, report
 from pytest_bdd import given, parsers, scenarios, then
 
 scenarios("links.feature")

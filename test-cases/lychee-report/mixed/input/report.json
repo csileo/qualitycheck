@@ -1,0 +1,64 @@
+{
+  "error_map": {
+    "README.md": [
+      {
+        "url": "file:///p/missing.md",
+        "status": {
+          "text": "File not found"
+        },
+        "span": {
+          "line": 3
+        }
+      },
+      {
+        "url": "https://a/x",
+        "status": {
+          "text": "Rejected status code: 404 Not Found",
+          "code": 404
+        },
+        "span": {
+          "line": 4
+        }
+      },
+      {
+        "url": "https://a/y",
+        "status": {
+          "text": "Rejected status code: 429",
+          "code": 429
+        },
+        "span": {
+          "line": 5
+        }
+      },
+      {
+        "url": "https://a/z",
+        "status": {
+          "text": "Rejected status code: 503",
+          "code": 503
+        },
+        "span": {
+          "line": 6
+        }
+      },
+      {
+        "url": "https://b",
+        "status": {
+          "text": "Network error: connection refused"
+        },
+        "span": {
+          "line": 7
+        }
+      }
+    ]
+  },
+  "timeout_map": {
+    "README.md": [
+      {
+        "url": "https://c",
+        "status": {
+          "text": "Timeout"
+        }
+      }
+    ]
+  }
+}

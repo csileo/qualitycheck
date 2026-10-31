@@ -1,6 +1,6 @@
 import re
 
-from check_runs import REPORT, committed_copy, git, header, report, run_check
+from conftest import REPORT, committed_copy, git, header, report, run_check
 from pytest_bdd import given, parsers, scenarios, then
 
 scenarios("quality-check.feature")

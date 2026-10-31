@@ -1,0 +1,6 @@
+Windows AMD64: x86_64-pc-windows-msvc.zip
+Linux x86_64: x86_64-unknown-linux-musl.tar.gz
+Linux aarch64: aarch64-unknown-linux-musl.tar.gz
+Darwin arm64: aarch64-apple-darwin.tar.gz
+Darwin x86_64: x86_64-apple-darwin.tar.gz
+Linux riscv64: none

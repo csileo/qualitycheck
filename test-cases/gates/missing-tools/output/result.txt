@@ -1,0 +1,9 @@
+tests: FAIL - pytest is missing from the environment
+bugs: FAIL - ruff is missing from the environment
+vulnerabilities: FAIL - bandit is missing from the environment
+maintainability: FAIL - radon is missing from the environment
+duplication: FAIL - pylint is missing from the environment
+complexity: FAIL - ruff is missing from the environment
+coverage: PASS - 90.0% (fail_under 80%)
+links: n/a - lychee unavailable (offline?): links not checked
+result: FAIL

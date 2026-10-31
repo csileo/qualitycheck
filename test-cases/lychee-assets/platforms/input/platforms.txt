@@ -1,0 +1,6 @@
+Windows AMD64
+Linux x86_64
+Linux aarch64
+Darwin arm64
+Darwin x86_64
+Linux riscv64

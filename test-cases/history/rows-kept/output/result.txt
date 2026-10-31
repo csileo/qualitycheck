@@ -1,0 +1,4 @@
+date;commit;result;tests;bugs;vulnerabilities;smells;complex_functions;duplicated_blocks;broken_links;coverage;sloc
+d1;a;PASS;PASS;0;0;0;0;0;0;90.0;10
+d2;b;FAIL;;;;;;;;;
+last pass: a

@@ -1,0 +1,2 @@
+[tool.qualitycheck]
+max_comits = 5

@@ -1,5 +1,5 @@
 import pytest
-from check_runs import normalized
+from conftest import normalized
 
 
 @pytest.mark.test_cases("projects")

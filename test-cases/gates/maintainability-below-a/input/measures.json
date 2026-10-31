@@ -1,0 +1,6 @@
+{
+  "maintainability": {
+    "src/a.py": "A",
+    "src/b.py": "C"
+  }
+}

@@ -1,0 +1,1 @@
+rejected: Unknown setting in [tool.qualitycheck]: max_comits. Use max_commits and max_days only.

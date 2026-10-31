@@ -1,0 +1,6 @@
+[tool.qualitycheck]
+max_commits = 5
+max_days = 3
+
+[tool.coverage.report]
+fail_under = 90

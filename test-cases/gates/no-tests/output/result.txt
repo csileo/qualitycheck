@@ -1,0 +1,9 @@
+tests: FAIL - no test collected
+bugs: PASS - 0 bug(s)
+vulnerabilities: PASS - 0 medium or high
+maintainability: PASS - 0 file(s) below A
+duplication: PASS - 0 duplicated block(s)
+complexity: PASS - 0 function(s) too complex
+coverage: n/a - no coverage data
+links: PASS - 0 broken link(s)
+result: FAIL

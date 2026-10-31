@@ -1,0 +1,11 @@
+{
+  "vulnerabilities": [
+    [
+      "src/a.py",
+      1,
+      "B101",
+      "",
+      "LOW"
+    ]
+  ]
+}

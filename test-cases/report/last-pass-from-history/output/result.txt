@@ -1,0 +1,68 @@
+# Quality check report
+
+- Tested commit: `aaaaaaaaaa`
+- Date: 2026-10-31T10:00+01:00
+- Result: **FAIL**
+- Last passing commit: `bbbbbbbbbb`, 2026-10-30T09:00+01:00
+
+## Gates
+
+| Gate | Result | Detail |
+|---|---|---|
+| tests | FAIL | pytest is missing from the environment |
+| bugs | FAIL | ruff is missing from the environment |
+| vulnerabilities | FAIL | bandit is missing from the environment |
+| maintainability | FAIL | radon is missing from the environment |
+| duplication | FAIL | pylint is missing from the environment |
+| complexity | FAIL | ruff is missing from the environment |
+| coverage | PASS | 90.0% (fail_under 80%) |
+| links | n/a | lychee unavailable (offline?): links not checked |
+
+## Metrics
+
+| Metric | Value |
+|---|---|
+| Lines of code | 10 |
+| Smells | 0 |
+| Low-severity vulnerabilities | 0 |
+| Coverage | 90.0% |
+
+## Bugs
+
+- none
+
+## Vulnerabilities (medium and high)
+
+- none
+
+## Complexity
+
+- none
+
+## Maintainability below A
+
+- none
+
+## Duplication
+
+- none
+
+## Smells (first 30)
+
+- none
+
+## Low-severity vulnerabilities
+
+- none
+
+## Broken links
+
+- none
+
+## Trend
+
+| date | commit | result | bugs | vulnerabilities | smells | coverage |
+|---|---|---|---|---|---|---|
+| 2026-10-30T09:00+01:00 | bbbbbbbbbb | PASS | 0 | 0 | 0 | 90.0 |
+
+Regenerate: `uv run qualitycheck`.

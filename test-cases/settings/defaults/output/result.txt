@@ -1,0 +1,1 @@
+Settings(max_commits=20, max_days=7, fail_under=None)

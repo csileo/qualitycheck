@@ -1,0 +1,3 @@
+broken: README.md:3 file file:///p/missing.md
+broken: README.md:4 404 https://a/x
+unchecked: 4

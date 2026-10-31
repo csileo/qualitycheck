@@ -1,6 +1,6 @@
 import datetime as dt
 
-from check_runs import committed_copy, git, run_check
+from conftest import committed_copy, git, run_check
 from pytest_bdd import given, parsers, scenarios, then, when
 
 from qualitycheck.history import COLUMNS, append
