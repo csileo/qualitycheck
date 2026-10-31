@@ -27,7 +27,12 @@ class Settings:
 
 def _pyproject(root: Path) -> dict:
     path = root / "pyproject.toml"
-    return tomllib.loads(path.read_text(encoding="utf-8")) if path.exists() else {}
+    if not path.exists():
+        return {}
+    try:
+        return tomllib.loads(path.read_text(encoding="utf-8"))
+    except tomllib.TOMLDecodeError as error:
+        raise SettingsError(f"pyproject.toml is not valid TOML: {error}.") from None
 
 
 def _own(tool: dict) -> dict[str, int]:
@@ -51,9 +56,20 @@ def load(root: Path) -> Settings:
     """Read the settings of the project at root."""
     tool = _pyproject(root).get("tool", {})
     own = _own(tool)
-    fail_under = tool.get("coverage", {}).get("report", {}).get("fail_under")
     return Settings(
         max_commits=own["max_commits"],
         max_days=own["max_days"],
-        fail_under=None if fail_under is None else float(fail_under),
+        fail_under=_fail_under(tool),
     )
+
+
+def _fail_under(tool: dict) -> float | None:
+    fail_under = tool.get("coverage", {}).get("report", {}).get("fail_under")
+    if fail_under is None:
+        return None
+    try:
+        return float(fail_under)
+    except (TypeError, ValueError):
+        raise SettingsError(
+            "[tool.coverage.report] fail_under must be a number."
+        ) from None

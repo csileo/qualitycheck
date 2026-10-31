@@ -1,0 +1,1 @@
+rejected: [tool.coverage.report] fail_under must be a number.

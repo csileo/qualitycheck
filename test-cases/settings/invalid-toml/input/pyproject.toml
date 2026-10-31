@@ -1,0 +1,2 @@
+[tool.qualitycheck
+max_days = 3
