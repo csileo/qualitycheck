@@ -11,7 +11,7 @@ import sys
 from pathlib import Path
 
 import pytest
-from pytest_bdd import parsers, then, when
+from pytest_bdd import given, parsers, then, when
 from syrupy.extensions.single_file import SingleFileSnapshotExtension, WriteMode
 
 from qualitycheck.gates import Finding, Measures, PytestRun, Vulnerability
@@ -71,6 +71,20 @@ def normalized(report: str, project: Path) -> str:
     sha = git(project, "rev-parse", "HEAD")
     report = report.replace(sha, "<commit>").replace(sha[:10], "<commit>")
     return DATE.sub("<date>", report).replace("\\", "/")
+
+
+def with_remote(tmp_path, url: str | None = None):
+    project = committed_copy("clean", tmp_path / "p")
+    remote = tmp_path / "remote.git"
+    git(tmp_path, "init", "-q", "--bare", str(remote))
+    git(project, "remote", "add", "origin", url or str(remote))
+    if url is None:
+        git(project, "push", "-q", "origin", "main")
+    return {
+        "case": "clean",
+        "project": project,
+        "head": git(project, "rev-parse", "HEAD"),
+    }
 
 
 REPORT = "docs/qualitycheck-report"
@@ -194,3 +208,24 @@ def result_and_code(run, result, code):
     project, process = run
     assert header(project)["Result"] == f"**{result}**"
     assert process.returncode == code, process.stdout + process.stderr
+
+
+@given(
+    parsers.re(r'the project "test-cases/projects/(?P<case>[^/]+)/input"$'),
+    target_fixture="project_case",
+)
+def project_case(case):
+    return {"case": case, "project": None}
+
+
+@given("a clean project with a remote", target_fixture="project_case")
+def clean_with_remote(tmp_path):
+    return with_remote(tmp_path)
+
+
+@given("a clean project with a remote, checked twice", target_fixture="project_case")
+def checked_twice(tmp_path):
+    case = with_remote(tmp_path)
+    for _ in range(2):
+        assert run_check(case["project"]).returncode == 0
+    return case

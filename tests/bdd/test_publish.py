@@ -1,4 +1,4 @@
-from conftest import REPORT, committed_copy, git, run_check
+from conftest import REPORT, git, run_check, with_remote
 from pytest_bdd import given, parsers, scenarios, then
 
 scenarios("publish.feature")
@@ -6,35 +6,8 @@ scenarios("publish.feature")
 BRANCH = "qualitycheck-report"
 
 
-def with_remote(tmp_path, url: str | None = None):
-    project = committed_copy("clean", tmp_path / "p")
-    remote = tmp_path / "remote.git"
-    git(tmp_path, "init", "-q", "--bare", str(remote))
-    git(project, "remote", "add", "origin", url or str(remote))
-    if url is None:
-        git(project, "push", "-q", "origin", "main")
-    return {
-        "case": "clean",
-        "project": project,
-        "head": git(project, "rev-parse", "HEAD"),
-    }
-
-
 def branch_rows(project, ref: str = BRANCH) -> int:
     return len(git(project, "show", f"{ref}:history.csv").splitlines()) - 1
-
-
-@given("a clean project with a remote", target_fixture="project_case")
-def clean_with_remote(tmp_path):
-    return with_remote(tmp_path)
-
-
-@given("a clean project with a remote, checked twice", target_fixture="project_case")
-def checked_twice(tmp_path):
-    case = with_remote(tmp_path)
-    for _ in range(2):
-        assert run_check(case["project"]).returncode == 0
-    return case
 
 
 @given(

@@ -7,14 +7,6 @@ scenarios("quality-check.feature")
 
 
 @given(
-    parsers.re(r'the project "test-cases/projects/(?P<case>[^/]+)/input"$'),
-    target_fixture="project_case",
-)
-def project_case(case):
-    return {"case": case, "project": None}
-
-
-@given(
     parsers.parse(
         'the project "test-cases/projects/{case}/input" '
         "with ruff's max-complexity set to {limit:d}"

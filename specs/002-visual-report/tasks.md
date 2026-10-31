@@ -4,7 +4,7 @@
 
 ## Phase 1: Setup
 
-- [ ] T001 Refactor: move the shared steps (`the project "..."`, `a clean project with a remote`, `..., checked twice`) to `tests/conftest.py`, with `with_remote`
+- [X] T001 Refactor: move the shared steps (`the project "..."`, `a clean project with a remote`, `..., checked twice`) to `tests/conftest.py`, with `with_remote`
 
 ## Phase 2: US-05 - Read the check at a glance on GitHub, as on Sonar
 
