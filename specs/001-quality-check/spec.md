@@ -26,7 +26,7 @@
   - coverage at least `[tool.coverage.report] fail_under`, when set; reported only when not.
 - Coverage is judged on the whole project: there is no separate gate for new code.
 - Smells (the other ruff findings) and low-severity vulnerabilities are reported, never gated.
-- The outputs are written to `docs/audit/`, which the project ignores in git, so the local copy is always the last one:
+- The outputs are written to `docs/qualitycheck/`, which the project ignores in git, so the local copy is always the last one:
   - `report.md`, in English. Its header gives the tested commit, the date, the result, and the last passing commit with its date (or "none yet"). It then gives one line per gate, the metrics, the findings, and the trend of the last runs;
   - `history.csv`, one row per run, `;` separator, rows never rewritten;
   - `coverage.xml`, `htmlcov/` and `bandit.html`.
@@ -42,9 +42,9 @@
 
 **Business rules**:
 - The command refuses to run on a tree with uncommitted or untracked changes: the result must describe a commit.
-- It refuses to run when `docs/audit/` is not ignored by git, and says to add it to `.gitignore`.
-- Before the check, it fetches the `quality-report` branch, to continue its `history.csv`; offline, it continues from the local branch.
-- After the check, it replaces the `quality-report` branch with one commit without parent, `chore: record quality check result`, holding the content of `docs/audit/`, and pushes it, replacing the remote one.
+- It refuses to run when `docs/qualitycheck/` is not ignored by git, and says to add it to `.gitignore`.
+- Before the check, it fetches the `qualitycheck` branch, to continue its `history.csv`; offline, it continues from the local branch.
+- After the check, it replaces the `qualitycheck` branch with one commit without parent, `chore: record qualitycheck result`, holding the content of `docs/qualitycheck/`, and pushes it, replacing the remote one.
 - Nothing is committed on the checked branch.
 - Offline, or when the push fails: a warning, the branch stays local, and the exit code is the check's.
 
@@ -70,7 +70,7 @@
 **As a** project owner **I want** a warning before a push when the last check is old or failed **so that** I run the check in time, without ever being blocked.
 
 **Business rules**:
-- `uv run qualitycheck --status`, run by a pre-push hook, reads the history from the local `quality-report` branch, else from its last fetched remote copy, without network access.
+- `uv run qualitycheck --status`, run by a pre-push hook, reads the history from the local `qualitycheck` branch, else from its last fetched remote copy, without network access.
 - It prints a warning when there is no recorded check, when the last one failed, or when it is older than `max_commits` commits or `max_days` days.
 - It always exits 0: it never blocks a push.
 - `[tool.qualitycheck]` holds only `max_commits` (default 20) and `max_days` (default 7); any other key is rejected with a message naming the known ones.
@@ -85,7 +85,7 @@
 - Tests failing: FAIL, the report quotes the end of the pytest output.
 - A tool missing from the project's environment: that gate fails, and the report names the tool.
 - No `[tool.qualitycheck]`: the defaults apply.
-- First run: no `quality-report` branch, "last passing commit: none yet".
+- First run: no `qualitycheck` branch, "last passing commit: none yet".
 - No remote: the branch is replaced locally, the push is skipped with a warning.
 - A check run on two machines: each continues the history it fetched; offline runs may lose the other machine's rows, never their own.
 - A check run twice on the same commit: two rows, the last one wins in the header.
@@ -94,18 +94,18 @@
 
 ### Functional Requirements
 
-- **FR-001**: `uv run qualitycheck` MUST run every gate of US-01 on the whole project and write the report and its companion files in `docs/audit/`.
+- **FR-001**: `uv run qualitycheck` MUST run every gate of US-01 on the whole project and write the report and its companion files in `docs/qualitycheck/`.
 - **FR-002**: The result MUST be PASS only when every gate holds; the exit code MUST be 0 on PASS, 1 on FAIL.
 - **FR-003**: The thresholds MUST come from the project's own tool settings; `[tool.qualitycheck]` MUST hold only `max_commits` and `max_days`.
-- **FR-004**: The command MUST refuse a dirty tree and a `docs/audit/` not ignored by git; it MUST publish the outputs as the single commit of the `quality-report` branch, and MUST NOT commit on the checked branch; a failed push MUST only warn.
+- **FR-004**: The command MUST refuse a dirty tree and a `docs/qualitycheck/` not ignored by git; it MUST publish the outputs as the single commit of the `qualitycheck` branch, and MUST NOT commit on the checked branch; a failed push MUST only warn.
 - **FR-005**: Broken links MUST fail the result, except those in `.lycheeignore`; an unavailable link check MUST only warn.
 - **FR-006**: `--status` MUST warn on a missing, failed or stale check and MUST never fail.
 
 ## Success Criteria *(mandatory)*
 
-- **SC-001**: On a clean project, one command gives a PASS report, published on `quality-report`, with the checked branch unchanged.
+- **SC-001**: On a clean project, one command gives a PASS report, published on `qualitycheck`, with the checked branch unchanged.
 - **SC-002**: Each gate, broken on purpose in a test case, turns the result to FAIL and names the cause in the report.
-- **SC-003**: After any number of checks, the `quality-report` branch holds one commit, and its history keeps one row per check.
+- **SC-003**: After any number of checks, the `qualitycheck` branch holds one commit, and its history keeps one row per check.
 - **SC-004**: Offline, the command completes, with warnings and no failure due to the network.
 - **SC-005**: A push is never blocked by the reminder.
 
@@ -114,7 +114,7 @@
 - The checked project has ruff, bandit, radon, pylint and pytest-cov in its dev dependencies; qualitycheck depends on them too, so installing it brings them.
 - Projects install qualitycheck as a dev dependency pinned to a version, and run `--status` from a pre-push hook.
 - Defaults `max_commits = 20` and `max_days = 7`.
-- The replaced commits of `quality-report` are no longer referenced: clones no longer download them, and the host removes them later.
+- The replaced commits of `qualitycheck` are no longer referenced: clones no longer download them, and the host removes them later.
 
 ## Definition of Ready *(checked before /speckit-plan)*
 

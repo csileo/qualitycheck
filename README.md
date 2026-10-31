@@ -8,7 +8,7 @@ Status: specified, not yet built ([spec](specs/001-quality-check/spec.md)).
 uv run qualitycheck
 ```
 
-It runs the tests with coverage, the linters and the link check, and writes the report to `docs/audit/` (ignored by git). It then publishes it on the `quality-report` branch, replaced at each check: one commit, no past versions, nothing committed on the checked branch.
+It runs the tests with coverage, the linters and the link check, and writes the report to `docs/qualitycheck/` (ignored by git). It then publishes it on the `qualitycheck` branch, replaced at each check: one commit, no past versions, nothing committed on the checked branch.
 
 ## Configuration
 

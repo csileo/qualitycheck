@@ -9,5 +9,5 @@ build/
 .coverage
 .coverage.*
 
-# Quality check outputs, published on the quality-report branch
-docs/audit/
+# qualitycheck outputs, published on the qualitycheck branch
+docs/qualitycheck/
