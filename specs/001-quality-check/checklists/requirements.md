@@ -1,4 +1,4 @@
-# Specification Quality Checklist: One local quality check, recorded in the project
+# Specification Quality Checklist: One local quality check, published with the project
 
 **Purpose**: Validate specification completeness and quality before proceeding to planning
 **Created**: 2026-10-31

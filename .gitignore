@@ -8,3 +8,6 @@ build/
 .ruff_cache/
 .coverage
 .coverage.*
+
+# Quality check outputs, published on the quality-report branch
+docs/audit/

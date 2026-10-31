@@ -13,7 +13,6 @@ Feature: Reminder before a push
       | checked 21 commits ago                 | warns that the check is 21 commits old |
       | checked 8 days ago                     | warns that the check is 8 days old     |
       | checked 3 commits ago, 2 days ago      | prints nothing                         |
-      | checked, followed by its record commit | prints nothing                         |
 
   Scenario: Limits from the project settings
     Given a project checked 6 commits ago with "max_commits = 5" in "[tool.qualitycheck]"
