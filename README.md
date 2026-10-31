@@ -27,7 +27,7 @@ uv run qualitycheck --status  # before a push: warn when the last check is missi
 3. writes `report.md`, `history.csv`, `coverage.xml`, `htmlcov/` and `bandit.html` to `docs/qualitycheck-report/`;
 4. publishes them on the `qualitycheck-report` branch, replaced at each check: one commit, no past versions, nothing committed on the checked branch ([ADR 0001](docs/adr/0001-publish-on-a-replaced-branch.md)). Offline, it only warns.
 
-Exit codes: 0 PASS, 1 FAIL, 2 the check did not run (invalid settings, uncommitted changes, report folder not ignored). `--status` always exits 0: it never blocks a push.
+Exit codes: 0 PASS, 1 FAIL, 2 the check did not run or was not recorded (invalid settings, uncommitted changes, report folder not ignored, git unable to commit the report). `--status` always exits 0: it never blocks a push.
 
 lychee is taken from `PATH`, else a pinned release is downloaded once into the user cache and checked against its SHA-256 ([ADR 0002](docs/adr/0002-pinned-lychee-download.md)); links listed in `.lycheeignore` are skipped.
 

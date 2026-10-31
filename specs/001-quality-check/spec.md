@@ -126,10 +126,10 @@
 
 ## Definition of Done *(checked before closing)*
 
-- [ ] Tests written first and green (TDD)
-- [ ] Tests structured as test cases (`test-cases/`)
-- [ ] Every scenario verified (manual ones ticked here)
-- [ ] Documentation up to date
-- [ ] `/code-review` done
+- [X] Tests written first and green (TDD)
+- [X] Tests structured as test cases (`test-cases/`)
+- [X] Every scenario verified (manual ones ticked here)
+- [X] Documentation up to date
+- [X] `/code-review` done
 - [ ] No unrecorded technical debt
-- [ ] Commits reference the story (`Refs: US-XX`)
+- [X] Commits reference the story (`Refs: US-XX`)

@@ -21,7 +21,7 @@ Chosen option: "Publish the outputs as the single commit of a dedicated branch, 
 
 * The outputs are written to `docs/qualitycheck-report/`, ignored by git.
 * The branch `qualitycheck-report` holds one commit without parent, built from that folder with a temporary index, then force-pushed; the checked branch, its index and its working tree never change.
-* `history.csv` holds the history: each check continues the one it fetched.
+* `history.csv` holds the history: each check continues the longer of the fetched and the local one, so a check that could not be pushed is kept.
 
 ### Consequences
 
