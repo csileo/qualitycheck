@@ -2,25 +2,48 @@
 
 One local quality check of a Python project, published with the project itself: no CI, no server, no account.
 
-Status: specified, not yet built ([spec](specs/001-quality-check/spec.md)).
+## Install
 
-```sh
-uv run qualitycheck
+In the checked project, as a dev dependency pinned to a tag:
+
+```toml
+[dependency-groups]
+dev = ["qualitycheck @ git+https://github.com/csileo/qualitycheck@v0.1.0"]
 ```
 
-It runs the tests with coverage, the linters and the link check, and writes the report to `docs/qualitycheck-report/` (ignored by git). It then publishes it on the `qualitycheck-report` branch, replaced at each check: one commit, no past versions, nothing committed on the checked branch.
+The project ignores the report folder in git: add `docs/qualitycheck-report/` to `.gitignore`.
+
+## Use
+
+```sh
+uv run qualitycheck           # run the check and publish it
+uv run qualitycheck --status  # before a push: warn when the last check is missing, failed or stale
+```
+
+`uv run qualitycheck`, on a tree with no uncommitted change:
+
+1. runs the tests with coverage, ruff, bandit, radon, pylint and the link check (lychee) on the whole project;
+2. judges each gate: tests pass, no bug, no medium or high vulnerability, maintainability A in every file, no duplicated block, no function above the complexity limit, coverage at least `fail_under`, no broken link;
+3. writes `report.md`, `history.csv`, `coverage.xml`, `htmlcov/` and `bandit.html` to `docs/qualitycheck-report/`;
+4. publishes them on the `qualitycheck-report` branch, replaced at each check: one commit, no past versions, nothing committed on the checked branch ([ADR 0001](docs/adr/0001-publish-on-a-replaced-branch.md)). Offline, it only warns.
+
+Exit codes: 0 PASS, 1 FAIL, 2 the check did not run (invalid settings, uncommitted changes, report folder not ignored). `--status` always exits 0: it never blocks a push.
+
+lychee is taken from `PATH`, else a pinned release is downloaded once into the user cache and checked against its SHA-256 ([ADR 0002](docs/adr/0002-pinned-lychee-download.md)); links listed in `.lycheeignore` are skipped.
 
 ## Configuration
 
-In the checked project's `pyproject.toml`:
+The thresholds come from the project's own tool settings: rules and complexity limit from ruff (`max-complexity`, 10 by default), coverage from `[tool.coverage.report] fail_under`, duplication from pylint, security from `[tool.bandit]`. qualitycheck adds two settings of its own:
 
 ```toml
 [tool.qualitycheck]
-max_commits = 20  # warn before a push (qualitycheck --status) when the last check is older than this many commits
+max_commits = 20  # --status warns when the last check is older than this many commits
 max_days = 7      # ... or than this many days
 ```
 
-The thresholds come from the project's own tool settings: complexity from ruff, coverage from `[tool.coverage.report] fail_under`, duplication from pylint.
+## Development
+
+[Spec](specs/001-quality-check/spec.md), [architecture](docs/architecture.md). Dev tooling from [commonreqs](https://github.com/csileo/commonreqs).
 
 ## License
 

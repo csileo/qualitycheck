@@ -32,7 +32,7 @@
 
 ## Phase 6: Polish
 
-- [ ] T014 README usage and settings; `docs/architecture.md`
+- [X] T014 README usage and settings; `docs/architecture.md`
 - [ ] T015 `/code-review`, then tick the DoD in `spec.md`
 - [ ] T016 Release v0.1.0: `CHANGELOG.md` by git-cliff, tag `v0.1.0`, push
 
