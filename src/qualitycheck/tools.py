@@ -1,5 +1,6 @@
 """Run the checked project's tools, in its own environment, and parse their outputs."""
 
+import importlib.util
 import json
 import os
 import re
@@ -88,15 +89,14 @@ def lint(root: Path, dirs: list[str]) -> list[Finding] | None:
 def vulnerabilities(
     root: Path, dirs: list[str], out: Path
 ) -> list[Vulnerability] | None:
-    """Bandit with the project's settings; also writes bandit.html."""
+    """Bandit with the project's settings, in one scan that also writes bandit.html."""
     if not dirs:
         return []
-    config = ["-c", "pyproject.toml"] if (root / "pyproject.toml").exists() else []
-    command = ["bandit", "-q", *config, "-r", *dirs]
-    process = _run(root, *command, "-f", "json")
-    if process is None:
+    if importlib.util.find_spec("bandit") is None:
         return None
-    _run(root, *command, "-f", "html", "-o", str(out / "bandit.html"))
+    config = ["-c", "pyproject.toml"] if (root / "pyproject.toml").exists() else []
+    scan = ["qualitycheck.bandit_scan", str(out / "bandit.html")]
+    process = _run(root, *scan, "-q", *config, "-r", *dirs, "-f", "json")
     return [
         Vulnerability(
             _relative(root, item["filename"]),
