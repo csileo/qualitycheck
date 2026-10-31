@@ -4,10 +4,10 @@ from pytest_bdd import given, parsers, scenarios, then
 scenarios("links.feature")
 
 
-def with_readme(tmp_path, ignored: str | None = None) -> dict:
+def with_readme(tmp_path, ignored: str | None = None, name: str = "README.md") -> dict:
     project = committed_copy("clean", tmp_path / "p")
     readme = "# Demo\n\n[Guide](missing.md)\n"
-    (project / "README.md").write_text(readme, encoding="utf-8")
+    (project / name).write_text(readme, encoding="utf-8")
     if ignored:
         (project / ignored).write_text("missing\\.md\n", encoding="utf-8")
     git(project, "add", "-A")
@@ -21,6 +21,14 @@ def with_readme(tmp_path, ignored: str | None = None) -> dict:
 )
 def broken_link(tmp_path):
     return with_readme(tmp_path)
+
+
+@given(
+    parsers.parse('a clean project whose "{name}" links to a missing page'),
+    target_fixture="project_case",
+)
+def broken_link_in(tmp_path, name):
+    return with_readme(tmp_path, name=name)
 
 
 @given(

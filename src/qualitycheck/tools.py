@@ -186,13 +186,14 @@ def tests(root: Path, out: Path) -> tuple[PytestRun | None, float | None]:
 def links(root: Path) -> tuple[list[Finding] | None, int]:
     """Lychee on the tracked Markdown files: broken links, and links left unchecked."""
     listed = subprocess.run(
-        ["git", "ls-files", "--", "*.md"],
+        ["git", "ls-files", "-z", "--", "*.md"],
         cwd=root,
         capture_output=True,
         text=True,
         encoding="utf-8",
         check=False,
-    ).stdout.split()
+    ).stdout.split("\0")
+    listed = [name for name in listed if name]
     if not listed:
         return [], 0
     program = lychee.binary()
