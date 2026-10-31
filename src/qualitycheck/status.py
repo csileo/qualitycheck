@@ -19,7 +19,10 @@ def reminder(
     if not rows:
         return f"no quality check recorded yet: {ADVICE}"
     last = rows[-1]
-    if last.get("result") != "PASS":
+    date = _date(last.get("date", ""))
+    if date is None or not last.get("commit") or not last.get("result"):
+        return f"the last recorded quality check is unreadable: {ADVICE}"
+    if last["result"] != "PASS":
         return f"the last quality check failed ({last['commit'][:10]}): {ADVICE}"
     max_commits, max_days = limits
     problems = []
@@ -28,7 +31,16 @@ def reminder(
     elif commits_since > max_commits:
         age = f"{commits_since} commits old (limit {max_commits})"
         problems.append(f"the last quality check is {age}")
-    days = (now - dt.datetime.fromisoformat(last["date"])).days
+    days = (now - date).days
     if days > max_days:
         problems.append(f"the last quality check is {days} days old (limit {max_days})")
     return f"{'; '.join(problems)}: {ADVICE}" if problems else None
+
+
+def _date(text: str) -> dt.datetime | None:
+    """Parse a recorded date; one without an offset is local time."""
+    try:
+        date = dt.datetime.fromisoformat(text)
+    except ValueError:
+        return None
+    return date if date.tzinfo else date.astimezone()
