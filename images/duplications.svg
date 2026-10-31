@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="260" height="128" viewBox="0 0 260 128" role="img" aria-label="Duplications: 1.2%, on 1349 lines, Failed" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif">
+<title>Duplications: 1.2%, on 1349 lines, Failed</title>
+<rect x="0.5" y="0.5" width="259" height="127" rx="6" fill="#ffffff" stroke="#e1e4e8"/>
+<text x="16" y="28" font-size="14" fill="#333333" font-weight="600">Duplications</text>
+<rect x="190" y="14" width="56" height="20" rx="10" fill="#d02f3a"/><text x="218" y="28" font-size="11" fill="#ffffff" font-weight="600" text-anchor="middle">Failed</text>
+<text x="16" y="78" font-size="30" fill="#236a97" font-weight="600">1.2%</text>
+<text x="16" y="104" font-size="12" fill="#6a737d">on 1349 lines</text>
+<circle cx="220" cy="82" r="20" fill="none" stroke="#eeeeee" stroke-width="7"/><circle cx="220" cy="82" r="20" fill="none" stroke="#eabe06" stroke-width="7" stroke-dasharray="1.5 125.7" transform="rotate(-90 220 82)"/>
+</svg>

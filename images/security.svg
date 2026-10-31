@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="260" height="128" viewBox="0 0 260 128" role="img" aria-label="Security: rating A, 0 vulnerabilities" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif">
+<title>Security: rating A, 0 vulnerabilities</title>
+<rect x="0.5" y="0.5" width="259" height="127" rx="6" fill="#ffffff" stroke="#e1e4e8"/>
+<text x="16" y="28" font-size="14" fill="#333333" font-weight="600">Security</text>
+<text x="16" y="78" font-size="30" fill="#236a97" font-weight="600">0</text>
+<text x="16" y="104" font-size="12" fill="#6a737d">vulnerabilities</text>
+<circle cx="220" cy="82" r="20" fill="#00aa00"/><text x="220" y="89" font-size="20" fill="#ffffff" font-weight="bold" text-anchor="middle">A</text>
+</svg>

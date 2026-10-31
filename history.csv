@@ -1,0 +1,3 @@
+date;commit;result;tests;bugs;vulnerabilities;smells;complex_functions;duplicated_blocks;broken_links;coverage;sloc
+2026-10-31T16:11+01:00;898494bc6acc4f4b119feeefbb55c58c76446922;FAIL;FAIL;0;0;0;0;1;0;71.5;1334
+2026-10-31T16:18+01:00;9e73ea52ea02defb1fd8c05759ad5db148cc3d1b;FAIL;PASS;0;0;0;0;1;0;72.0;1349

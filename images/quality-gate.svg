@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="788" height="96" viewBox="0 0 788 96" role="img" aria-label="Quality Gate: Failed, 1 condition failed: duplication: 1 duplicated block(s)" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif">
+<title>Quality Gate: Failed, 1 condition failed: duplication: 1 duplicated block(s)</title>
+<rect x="0.5" y="0.5" width="787" height="95" rx="6" fill="#ffffff" stroke="#e1e4e8"/>
+<rect x="0" y="0" width="8" height="96" rx="4" fill="#d02f3a"/>
+<text x="28" y="30" font-size="13" fill="#6a737d" font-weight="600">Quality Gate</text>
+<circle cx="46" cy="62" r="16" fill="#d02f3a"/>
+<path d="M40 56 L52 68 M52 56 L40 68" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round"/>
+<text x="72" y="72" font-size="30" fill="#d02f3a" font-weight="bold">Failed</text>
+<text x="210" y="58" font-size="14" fill="#333333" font-weight="600">1 condition failed</text>
+<text x="210" y="78" font-size="12" fill="#6a737d">duplication: 1 duplicated block(s)</text>
+<text x="768" y="40" font-size="22" fill="#236a97" font-weight="600" text-anchor="end">1.3k</text>
+<text x="768" y="60" font-size="12" fill="#6a737d" text-anchor="end">lines of code · Python</text>
+</svg>
