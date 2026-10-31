@@ -1,18 +1,28 @@
 [project]
 name = "qualitycheck"
 version = "0.0.0"
-description = "One local quality check of a Python project, recorded in the project itself."
+description = "One local quality check of a Python project, published with the project itself."
 readme = "README.md"
 license = { file = "LICENSE" }
 authors = [{ name = "Cédric SILEO" }]
 requires-python = ">=3.10"
-dependencies = []
+dependencies = [
+    "bandit[toml]>=1.8",
+    "pylint>=3.3",
+    "pytest>=8",
+    "pytest-cov>=6",
+    "radon>=6",
+    "ruff>=0.17",
+    "tomli>=2; python_version < '3.11'",
+]
+
+[project.scripts]
+qualitycheck = "qualitycheck.cli:main"
 
 [dependency-groups]
 dev = [
-    "pytest>=8",
     "pytest-bdd>=8",
-    "ruff>=0.17,<0.18",
+    "syrupy>=4",
 ]
 
 [build-system]

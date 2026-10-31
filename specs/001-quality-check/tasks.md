@@ -4,9 +4,9 @@
 
 ## Phase 1: Setup
 
-- [ ] T001 Package skeleton: `src/qualitycheck/__init__.py`, `cli.py` with `main`, script `qualitycheck` and runtime dependencies in `pyproject.toml`, `uv.lock`
-- [ ] T002 Test support: byte snapshots in `tests/conftest.py`, fixtures copying a test project into a fresh repository with a bare remote, report normalization
-- [ ] T003 [P] ADR 0001 in `docs/adr/0001-publish-on-a-replaced-branch.md`, ADR 0002 in `docs/adr/0002-pinned-lychee-download.md`
+- [X] T001 Package skeleton: `src/qualitycheck/__init__.py`, `cli.py` with `main`, script `qualitycheck` and runtime dependencies in `pyproject.toml`, `uv.lock`
+- [X] T002 Test support: byte snapshots in `tests/conftest.py`, fixtures copying a test project into a fresh repository with a bare remote, report normalization
+- [X] T003 [P] ADR 0001 in `docs/adr/0001-publish-on-a-replaced-branch.md`, ADR 0002 in `docs/adr/0002-pinned-lychee-download.md`
 
 ## Phase 2: US-01 - Check the project's quality in one command
 
