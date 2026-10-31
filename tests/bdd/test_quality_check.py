@@ -1,21 +1,9 @@
 import re
 
-from conftest import committed_copy, git, run_check
-from pytest_bdd import given, parsers, scenarios, then, when
+from check_runs import REPORT, committed_copy, git, header, report, run_check
+from pytest_bdd import given, parsers, scenarios, then
 
 scenarios("quality-check.feature")
-
-REPORT = "docs/qualitycheck-report"
-
-
-def report(project) -> str:
-    return (project / REPORT / "report.md").read_text(encoding="utf-8")
-
-
-def header(project) -> dict[str, str]:
-    lines = report(project).split("\n## ", 1)[0].splitlines()
-    pairs = (line[2:].split(": ", 1) for line in lines if line.startswith("- "))
-    return dict(pairs)
 
 
 @given(
@@ -60,21 +48,6 @@ def break_a_test(project_case):
         test.read_text(encoding="utf-8").replace("== 5", "== 6"), encoding="utf-8"
     )
     git(project, "commit", "-qam", "break a test")
-
-
-@when("I run the quality check", target_fixture="run")
-def run(project_case, checked):
-    if project_case["project"] is None:
-        return checked(project_case["case"])
-    project = project_case["project"]
-    return project, run_check(project)
-
-
-@then(parsers.parse('the result is "{result}" and the exit code {code:d}'))
-def result_and_code(run, result, code):
-    project, process = run
-    assert header(project)["Result"] == f"**{result}**"
-    assert process.returncode == code, process.stdout + process.stderr
 
 
 @then(parsers.parse('"{folder}" holds {names}'))
