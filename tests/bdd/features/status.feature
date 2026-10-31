@@ -22,4 +22,5 @@ Feature: Reminder before a push
   Scenario: Unknown settings are rejected
     Given a project with "max_comits = 5" in "[tool.qualitycheck]"
     When I run the quality check status
-    Then it fails naming "max_commits" and "max_days"
+    Then it warns that the settings are invalid, naming "max_commits" and "max_days"
+    And the exit code is 0

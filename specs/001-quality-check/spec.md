@@ -73,7 +73,7 @@
 - `uv run qualitycheck --status`, run by a pre-push hook, reads the history from the local `qualitycheck` branch, else from its last fetched remote copy, without network access.
 - It prints a warning when there is no recorded check, when the last one failed, or when it is older than `max_commits` commits or `max_days` days.
 - It always exits 0: it never blocks a push.
-- `[tool.qualitycheck]` holds only `max_commits` (default 20) and `max_days` (default 7); any other key is rejected with a message naming the known ones.
+- `[tool.qualitycheck]` holds only `max_commits` (default 20) and `max_days` (default 7); any other key is rejected with a message naming the known ones: the check stops, the reminder only warns.
 
 **Acceptance scenarios**: `tests/bdd/features/status.feature`
 
