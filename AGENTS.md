@@ -25,6 +25,7 @@ Permanent rules for coding agents working on qualitycheck. Taken from the rules 
 
 ## Quality
 - TDD: a red test before any production code (except spikes); Red → Green → Refactor.
+- Before a commit that changes an output, run every test whose snapshots hold that output (search `test-cases/*/*/output/`), not only the tests next to the changed code.
 - Test cases: every test reads its inputs from `test-cases/<group>/<case>/input/` and compares with expected outputs in `output/`, as syrupy snapshots regenerated with `--snapshot-update` and reviewed before commit. Inputs include CLI arguments, URLs and options; expected errors are outputs too. BDD scenarios keep their examples in the `.feature` file and take larger inputs from `test-cases/`. `test-cases/`, inputs and outputs, keeps its bytes: git, the hooks and the editor never rewrite it, and snapshots are written byte for byte (`.gitattributes`, `.editorconfig`).
 - Tests depend on `src/`, never the reverse.
 - PEP 8 and PEP 257 via ruff; cyclomatic complexity ≤ 15; at most 5 arguments per function.
