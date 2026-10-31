@@ -136,3 +136,27 @@ def render(
         ["", "Regenerate: `uv run qualitycheck`."],
     ]
     return "\n".join(line for part in parts for line in part) + "\n"
+
+
+def _count(found: list | None, measured: list | None) -> str:
+    """The count of a measure; empty when its tool is missing."""
+    return "" if measured is None else str(len(found or []))
+
+
+def history_row(run: Run, m: g.Measures, judged: list[g.Gate]) -> dict[str, str]:
+    """Return the history row of a check; a missing tool leaves its cells empty."""
+    status = {gate.name: gate.status for gate in judged}
+    return {
+        "date": run.date,
+        "commit": run.commit,
+        "result": run.result,
+        "tests": status["tests"],
+        "bugs": _count(g.bugs(m.lint), m.lint),
+        "vulnerabilities": _count(g.severe(m.vulnerabilities), m.vulnerabilities),
+        "smells": _count(g.smells(m.lint), m.lint),
+        "complex_functions": _count(g.complex_functions(m.lint), m.lint),
+        "duplicated_blocks": _count(m.duplicates, m.duplicates),
+        "broken_links": _count(m.links, m.links),
+        "coverage": "" if m.coverage is None else f"{m.coverage:.1f}",
+        "sloc": "" if m.maintainability is None else str(m.sloc),
+    }

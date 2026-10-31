@@ -8,7 +8,7 @@ import sys
 from pathlib import Path
 
 from qualitycheck import gates, history, repository, settings, status, tools
-from qualitycheck.report import Run, render
+from qualitycheck.report import Run, history_row, render
 
 REPORT_DIR = Path("docs") / "qualitycheck-report"
 # Invalid settings, a tree the result could not describe, or a report git
@@ -25,24 +25,6 @@ def _head(root: Path) -> str:
         check=False,
     )
     return process.stdout.strip() or "unknown"
-
-
-def _row(run: Run, m: gates.Measures, judged: list[gates.Gate]) -> dict[str, str]:
-    status = {gate.name: gate.status for gate in judged}
-    return {
-        "date": run.date,
-        "commit": run.commit,
-        "result": run.result,
-        "tests": status["tests"],
-        "bugs": str(len(gates.bugs(m.lint))),
-        "vulnerabilities": str(len(gates.severe(m.vulnerabilities))),
-        "smells": str(len(gates.smells(m.lint))),
-        "complex_functions": str(len(gates.complex_functions(m.lint))),
-        "duplicated_blocks": str(len(m.duplicates or [])),
-        "broken_links": "" if m.links is None else str(len(m.links)),
-        "coverage": "" if m.coverage is None else f"{m.coverage:.1f}",
-        "sloc": str(m.sloc),
-    }
 
 
 def _warn(message: str) -> None:
@@ -80,7 +62,7 @@ def check(root: Path) -> int:
     judged = gates.evaluate(measures, own.fail_under)
     date = dt.datetime.now().astimezone().isoformat(timespec="minutes")
     run = Run(_head(root), date, gates.result(judged))
-    text = history.append(previous, _row(run, measures, judged))
+    text = history.append(previous, history_row(run, measures, judged))
     report = render(run, judged, measures, history.parse(text))
     (out / "report.md").write_bytes(report.encode("utf-8"))
     (out / "history.csv").write_bytes(text.encode("utf-8"))
