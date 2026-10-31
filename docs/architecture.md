@@ -38,6 +38,7 @@ flowchart TB
 | `cli` | the two commands and their exit codes |
 | `settings` | `[tool.qualitycheck]` and `fail_under` |
 | `tools` | runs the tools, parses their outputs into `Measures` |
+| `process` | runs a program and keeps its output as text, for `tools`, `repository` and `cli` |
 | `bandit_scan` | runs bandit once, writing its JSON and `bandit.html` from the same scan |
 | `lychee` | finds or downloads the pinned lychee; sorts its findings |
 | `gates` | judges the measures: one gate each, PASS, FAIL or n/a |

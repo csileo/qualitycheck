@@ -3,11 +3,19 @@
 import argparse
 import datetime as dt
 import shutil
-import subprocess
 import sys
 from pathlib import Path
 
-from qualitycheck import dashboard, gates, history, repository, settings, status, tools
+from qualitycheck import (
+    dashboard,
+    gates,
+    history,
+    process,
+    repository,
+    settings,
+    status,
+    tools,
+)
 from qualitycheck.report import Run, history_row, render
 
 REPORT_DIR = Path("docs") / "qualitycheck-report"
@@ -17,14 +25,8 @@ CANNOT_RUN = 2
 
 
 def _head(root: Path) -> str:
-    process = subprocess.run(
-        ["git", "rev-parse", "HEAD"],
-        cwd=root,
-        capture_output=True,
-        text=True,
-        check=False,
-    )
-    return process.stdout.strip() or "unknown"
+    head = process.run(["git", "rev-parse", "HEAD"], root).stdout.strip()
+    return head or "unknown"
 
 
 def _warn(message: str) -> None:

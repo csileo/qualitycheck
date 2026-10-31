@@ -1,9 +1,10 @@
 """Git: refuse what a result cannot describe, then publish the report on its branch."""
 
-import os
 import subprocess
 import tempfile
 from pathlib import Path
+
+from qualitycheck import process
 
 BRANCH = "qualitycheck-report"
 MESSAGE = "chore: record qualitycheck report"
@@ -19,16 +20,7 @@ class PublishError(RuntimeError):
 def _git(
     root: Path, *args: str, env: dict | None = None
 ) -> subprocess.CompletedProcess:
-    return subprocess.run(
-        ["git", *args],
-        cwd=root,
-        env={**os.environ, **(env or {})},
-        capture_output=True,
-        text=True,
-        encoding="utf-8",
-        errors="replace",
-        check=False,
-    )
+    return process.run(["git", *args], root, env)
 
 
 def refusal(root: Path, report_dir: Path) -> str | None:
