@@ -20,10 +20,8 @@ dependencies = [
 qualitycheck = "qualitycheck.cli:main"
 
 [dependency-groups]
-dev = [
-    "pytest-bdd>=8",
-    "syrupy>=4",
-]
+# Exact versions of the whole tooling, shared with the template and the other tools.
+dev = ["commonreqs @ git+https://github.com/csileo/commonreqs@2d6e1f2"]
 
 [build-system]
 requires = ["hatchling"]
@@ -49,7 +47,3 @@ convention = "google"
 
 [tool.ruff.lint.per-file-ignores]
 "tests/**" = ["D", "PLR2004"]
-
-[tool.uv]
-# pytest-bdd 9.0.0 fails on pytest 9.2.0 (FixtureManager._arg2fixturedefs removed).
-constraint-dependencies = ["pytest<9.2"]

@@ -56,7 +56,8 @@ Permanent rules for coding agents working on qualitycheck. Taken from the rules 
 
 ## Environment
 - uv only: `uv sync`, `uv add`, `uv run`; never `pip install`.
-- Dependencies as version ranges in `pyproject.toml`; `uv.lock` is committed.
+- Runtime dependencies as version ranges, since qualitycheck is installed in other projects; dev tooling from `commonreqs` only, pinned to a tag or commit, at its exact versions; `uv.lock` is committed.
+- A version changes only in a `build(deps)` commit, after the full test suite; never as a side effect.
 - Secrets in `.env` (ignored); document variable names in `.env.example`.
 - Relative paths only; LF line endings; UTF-8.
 - Task impossible in the cloud (GPU, browser, network): flag it "local only".
