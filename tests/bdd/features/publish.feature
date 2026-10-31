@@ -41,3 +41,14 @@ Feature: Each check published without growing the repository
     Then the result is "PASS" and the exit code 0
     And a warning says the result was not pushed
     And the local branch "qualitycheck-report" holds the result
+
+  Scenario: A check that was not pushed stays in the history
+    Given a clean project with a remote, checked once online and once offline
+    When I run the quality check
+    Then its "history.csv" has 3 rows
+
+  Scenario: A report that git cannot record stops the check
+    Given a clean project with a remote and no git identity
+    When I run the quality check
+    Then it cannot run, saying the report was not recorded
+    And the checked branch is unchanged

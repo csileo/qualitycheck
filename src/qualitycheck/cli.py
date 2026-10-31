@@ -11,7 +11,8 @@ from qualitycheck import gates, history, repository, settings, status, tools
 from qualitycheck.report import Run, render
 
 REPORT_DIR = Path("docs") / "qualitycheck-report"
-# Invalid settings, or a tree the result could not describe.
+# Invalid settings, a tree the result could not describe, or a report git
+# could not record.
 CANNOT_RUN = 2
 
 
@@ -83,7 +84,11 @@ def check(root: Path) -> int:
     report = render(run, judged, measures, history.parse(text))
     (out / "report.md").write_bytes(report.encode("utf-8"))
     (out / "history.csv").write_bytes(text.encode("utf-8"))
-    repository.publish(root, out)
+    try:
+        repository.publish(root, out)
+    except repository.PublishError as error:
+        _warn(str(error))
+        return CANNOT_RUN
     warning = repository.push(root)
     if warning:
         _warn(warning)

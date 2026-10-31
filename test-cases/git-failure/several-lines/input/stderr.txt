@@ -1,0 +1,3 @@
+To origin
+ ! [rejected]  qualitycheck-report (fetch first)
+error: failed to push some refs to origin

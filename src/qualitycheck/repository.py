@@ -8,7 +8,12 @@ from pathlib import Path
 BRANCH = "qualitycheck-report"
 MESSAGE = "chore: record qualitycheck report"
 REMOTE = "origin"
+LOCAL_REF = f"refs/heads/{BRANCH}"
 REMOTE_REF = f"refs/remotes/{REMOTE}/{BRANCH}"
+
+
+class PublishError(RuntimeError):
+    """Git could not record the report on its branch."""
 
 
 def _git(
@@ -46,13 +51,22 @@ def _has_remote(root: Path) -> bool:
     return REMOTE in _git(root, "remote").stdout.split()
 
 
+def _longest_history(root: Path) -> str:
+    """Return the history with the most rows, local or last fetched.
+
+    A check that could not be pushed lives only on the local branch, so the
+    longer one holds every recorded check.
+    """
+    shown = [
+        _git(root, "show", f"{ref}:history.csv") for ref in (LOCAL_REF, REMOTE_REF)
+    ]
+    found = [process.stdout for process in shown if not process.returncode]
+    return max(found, key=lambda text: len(text.splitlines()), default="")
+
+
 def recorded_history(root: Path) -> str:
-    """Return the history of the local branch, else of its last fetched copy."""
-    for ref in (f"refs/heads/{BRANCH}", REMOTE_REF):
-        shown = _git(root, "show", f"{ref}:history.csv")
-        if not shown.returncode:
-            return shown.stdout
-    return ""
+    """Return the longest history recorded here, without touching the network."""
+    return _longest_history(root)
 
 
 def commits_since(root: Path, commit: str) -> int | None:
@@ -63,30 +77,28 @@ def commits_since(root: Path, commit: str) -> int | None:
 
 
 def previous_history(root: Path) -> str:
-    """Return the history to continue: the remote's when fetched, else the local one."""
-    fetched = (
-        _has_remote(root)
-        and not _git(
-            root, "fetch", "-q", REMOTE, f"+refs/heads/{BRANCH}:{REMOTE_REF}"
-        ).returncode
-    )
-    for ref in ([REMOTE_REF] if fetched else []) + [f"refs/heads/{BRANCH}"]:
-        shown = _git(root, "show", f"{ref}:history.csv")
-        if not shown.returncode:
-            return shown.stdout
-    return ""
+    """Fetch the remote branch when there is one; return the longest history."""
+    if _has_remote(root):
+        _git(root, "fetch", "-q", REMOTE, f"+{LOCAL_REF}:{REMOTE_REF}")
+    return _longest_history(root)
+
+
+def _checked(process: subprocess.CompletedProcess) -> str:
+    if process.returncode:
+        raise PublishError(not_done("the report was not recorded", process.stderr))
+    return process.stdout.strip()
 
 
 def publish(root: Path, out: Path) -> str:
     """Replace the branch with one commit, without parent, holding out."""
-    git_dir = _git(root, "rev-parse", "--absolute-git-dir").stdout.strip()
+    git_dir = _checked(_git(root, "rev-parse", "--absolute-git-dir"))
     with tempfile.TemporaryDirectory() as temporary:
         env = {"GIT_INDEX_FILE": str(Path(temporary) / "index")}
         base = ["--git-dir", git_dir, "--work-tree", str(out)]
-        _git(out, *base, "add", "-A", "-f", ".", env=env)
-        tree = _git(out, *base, "write-tree", env=env).stdout.strip()
-    commit = _git(root, "commit-tree", tree, "-m", MESSAGE).stdout.strip()
-    _git(root, "update-ref", f"refs/heads/{BRANCH}", commit)
+        _checked(_git(out, *base, "add", "-A", "-f", ".", env=env))
+        tree = _checked(_git(out, *base, "write-tree", env=env))
+    commit = _checked(_git(root, "commit-tree", tree, "-m", MESSAGE))
+    _checked(_git(root, "update-ref", LOCAL_REF, commit))
     return commit
 
 
@@ -94,10 +106,16 @@ def push(root: Path) -> str | None:
     """Push the branch, replacing the remote one; return a warning, or None."""
     if not _has_remote(root):
         return f"no remote {REMOTE}: the report stays on the local branch {BRANCH}."
-    pushed = _git(root, "push", "-q", "--force", REMOTE, f"refs/heads/{BRANCH}")
+    pushed = _git(root, "push", "-q", "--force", REMOTE, LOCAL_REF)
     if pushed.returncode:
         return (
-            f"the report was not pushed ({pushed.stderr.strip().splitlines()[-1]}); "
-            f"it stays on the local branch {BRANCH}."
+            not_done("the report was not pushed", pushed.stderr)
+            + f"; it stays on the local branch {BRANCH}."
         )
     return None
+
+
+def not_done(what: str, stderr: str) -> str:
+    """Return what failed, with the last line git gave as the reason, if any."""
+    lines = stderr.strip().splitlines()
+    return f"{what} ({lines[-1].strip()})" if lines else what

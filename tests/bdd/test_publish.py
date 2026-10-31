@@ -168,3 +168,35 @@ def local_branch_holds(run, branch):
     project, _ = run
     files = git(project, "ls-tree", "-r", "--name-only", branch).splitlines()
     assert "report.md" in files
+
+
+@given(
+    "a clean project with a remote, checked once online and once offline",
+    target_fixture="project_case",
+)
+def checked_online_then_offline(tmp_path):
+    case = with_remote(tmp_path)
+    project = case["project"]
+    assert run_check(project).returncode == 0
+    url = git(project, "remote", "get-url", "origin")
+    git(project, "remote", "set-url", "origin", str(tmp_path / "missing.git"))
+    assert run_check(project).returncode == 0
+    git(project, "remote", "set-url", "origin", url)
+    return case
+
+
+@given(
+    "a clean project with a remote and no git identity", target_fixture="project_case"
+)
+def no_identity(tmp_path):
+    case = with_remote(tmp_path)
+    empty = {"GIT_AUTHOR_NAME": "", "GIT_COMMITTER_NAME": ""}
+    case["env"] = {**empty, "GIT_AUTHOR_EMAIL": "", "GIT_COMMITTER_EMAIL": ""}
+    return case
+
+
+@then("it cannot run, saying the report was not recorded")
+def not_recorded(run):
+    _, process = run
+    assert process.returncode == 2, process.stderr
+    assert "report was not recorded" in process.stderr
