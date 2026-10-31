@@ -4,7 +4,7 @@ Feature: One local quality check
     Given the project "test-cases/projects/clean/input"
     When I run the quality check
     Then the result is "PASS" and the exit code 0
-    And "docs/qualitycheck/" holds "report.md", "history.csv", "coverage.xml", "htmlcov/" and "bandit.html"
+    And "docs/qualitycheck-report/" holds "report.md", "history.csv", "coverage.xml", "htmlcov/" and "bandit.html"
     And the report header gives the tested commit, the date, "PASS" and the last passing commit
 
   Scenario Outline: Each gate fails the check
